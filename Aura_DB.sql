@@ -1,5 +1,5 @@
 create database Aura_party;
-use Aurra_party;
+use Aura_party;
 
 create table Cliente(
 idUser int auto_increment primary key,
