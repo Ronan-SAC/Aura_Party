@@ -8,7 +8,7 @@
 </head>
 <body>
 <section id="section_login">
-    <form action="./backend/router/LoginRouter.php?Login_Validation=" method="POST">
+    <form action="./backend/router/LoginRouter.php?Login_Validation=True" method="POST">
         <h1>Login</h1>
         <div class="container_login">
             <h2>Insira seu Nome</h2>
