@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+if(isset($_SESSION["id_User"])){
+    header("Location: ./pages/User/index.php");
+}
+ 
+if(isset($_SESSION["id_Admin"])){
+    header("Location: ./pages/Admin/index.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

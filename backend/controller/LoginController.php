@@ -19,12 +19,12 @@ class LoginController{
         $db->bindParam(":name",$name);
         $db->bindParam(":password",$password);
         $db->execute();
-        $Client = $db->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($Client);
+        $Clientes = $db->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($Clientes);
 
-        if($Client){
+        if($Clientes){
             session_start();
-            $_SESSION["id"] = $Client[0]["id"];
+            $_SESSION["id_User"] = $Clientes[0]["idUser"];
             return true;
         }
         else{
