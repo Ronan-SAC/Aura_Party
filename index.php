@@ -8,13 +8,13 @@
 </head>
 <body>
 <section id="section_login">
-    <form action="./backend/router/LoginRouter.php?acao=validarLogin" method="POST">
+    <form action="./backend/router/LoginRouter.php?Login_Validation=" method="POST">
         <h1>Login</h1>
         <div class="container_login">
             <h2>Insira seu Nome</h2>
-             <input type="text" name="nome" class="input">
+             <input type="text" name="name" class="input">
              <h2>Insira sua Senha</h2>
-             <input type="password" name="senha" class="input">
+             <input type="password" name="password" class="input">
              <button type="submit" class="button-6" role="button">Logar</button>
         </div>
     </form>
