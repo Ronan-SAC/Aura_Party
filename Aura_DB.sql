@@ -1,3 +1,18 @@
+/*config_MYSQL
+
+Connection Name: Aura_DB
+Username: root
+Password: ""
+
+
+
+
+
+
+
+*/
+
+
 create database Aura_party;
 use Aura_party;
 
