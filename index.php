@@ -12,28 +12,39 @@ if(isset($_SESSION["id_Admin"])){
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css"> 
-    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./assets/oculos.png">
+    <title>Aura Parties</title>
 </head>
 <body>
-<section id="section_login">
-    <form action="./backend/router/LoginRouter.php?Login_Validation=True" method="POST">
-        <h1>Login</h1>
-        <div class="container_login">
-            <h2>Insira seu Nome</h2>
-             <input type="text" name="name" class="input">
-             <h2>Insira sua Senha</h2>
-             <input type="password" name="password" class="input">
-             <button type="submit" class="button-6" role="button">Logar</button>
-        </div>
-    </form>
-
-    </section>
+    <div class="box">
+        <span class="borderline"></span>
+        <form action="./backend/router/LoginRouter.php?Login_Validation=True" method="POST">
+            <h2>Login</h2>
+            <div class="inputBox">
+                <input type="text" required ="required" name="name">
+                <span>Usuario</span>
+                <i></i>
+            </div> <!--Input Box-->
+            <div class="inputBox">
+                <input type="password" required ="required" name="password">
+                <span>Senha</span>
+                <i></i>
+            </div> <!--Input Box-->
+            <div class="links">
+                <a href="#">Esqueci a senha </a>
+                <a href="#">Criar conta </a>
+            </div><!--Links-->
+            <input type="submit" value="Entrar "> 
+        </form>
+    </div><!--box-->
     
 </body>
 </html>
