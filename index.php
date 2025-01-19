@@ -6,7 +6,7 @@ if(isset($_SESSION["id_User"])){
     header("Location: ./pages/User/index.php");
 }
  
-if(isset($_SESSION["id_Admin"])){
+if(isset($_SESSION["id_Adm"])){
     header("Location: ./pages/Admin/index.php");
 }
 
