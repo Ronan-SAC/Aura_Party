@@ -31,10 +31,10 @@ class UsersController{
 
     public function registerAdm($name,$password){
         try {
-            $sql_Adm = "INSERT INTO Adm (loginUser,senhaAdm) VALUES(':name',':password');"
+            $sql_Adm = "INSERT INTO Adm (loginUser,senhaAdm) VALUES( :name, :password )";
             $db_Adm = $this->conn->prepare($sql_Adm);
-            $db_Adm->bindParam(":nome",$name)
-            $db_Adm->bindParam(":password",$password)
+            $db_Adm->bindParam(":name",$name);
+            $db_Adm->bindParam(":password",$password);
 
             if($db_Adm->execute()){
                 return true;
@@ -49,6 +49,8 @@ class UsersController{
             //throw $th;
         }
     }
+
+
 
     public function getAdmById($id_Adm){
         try {
@@ -72,13 +74,13 @@ class UsersController{
     }
 
 
-    public function UpdateAdmin($id_Adm,$name,$password){
+    public function UpdateAdmin($AdmId,$name,$password){
         try {
-            $sql_Adm ="UPDATE Adm SET loginUser = :name, senhaAdm = :password WHERE idAdm = :id_Adm";
+            $sql_Adm ="UPDATE Adm SET loginUser = :name, senhaAdm = :password WHERE idAdm = :AdmId";
             $db_Adm = $this->conn->prepare($sql_Adm);
             $db_Adm->bindParam(":name",$name);
             $db_Adm->bindParam(":password",$password);
-            $db_Adm->bindParam(":id_Adm",$id_Adm);
+            $db_Adm->bindParam(":AdmId",$AdmId);
 
             if($db_Adm->execute()){
                 return true;
@@ -94,11 +96,11 @@ class UsersController{
     }   
 
 
-    public function DeleteAdmin($id_Adm){
+    public function DeleteAdmin($idAdm){
         try {
-            $sql_Adm ="DELETE FROM Adm WHERE idAdm = :id_Adm";
+            $sql_Adm ="DELETE FROM Adm WHERE idAdm = :idAdm";
             $db_Adm = $this->conn->prepare($sql_Adm);
-            $db_Adm->bindParam(":id_Adm",$id_Adm);
+            $db_Adm->bindParam(":idAdm",$idAdm);
     
             if($db_Adm->execute()){
                     return true;
@@ -109,7 +111,7 @@ class UsersController{
     
             } catch (\Throwable $th) {
                 //throw $th;
-            }register admin
+            }
         }
 
 
@@ -134,12 +136,16 @@ public function getALLUser(){
     }
 }
 
-public function registerUser($name,$password){
+
+public function registerUser($name,$password,$telefone,$cpf,$email){
     try {
-        $sql_User = "INSERT INTO Cliente (loginUser,senha) VALUES(':name',':password');"
+        $sql_User = "INSERT INTO Cliente (loginUser,senha,telefone,cpf,email) VALUES (:name, :password, :telefone, :cpf, :email )";
         $db_User = $this->conn->prepare($sql_User);
-        $db_User->bindParam(":nome",$name)
-        $db_User->bindParam(":password",$password)
+        $db_User->bindParam(":name",$name);
+        $db_User->bindParam(":password",$password);
+        $db_User->bindParam(":telefone",$telefone);
+        $db_User->bindParam(":cpf",$cpf);
+        $db_User->bindParam(":email",$email);
 
         if($db_User->execute()){
             return true;
@@ -177,13 +183,16 @@ public function getUserById($id_User){
 }
 
 
-public function UpdateUser($id_User,$name,$password){
+public function UpdateUser($UserId,$name,$password,$telefone,$cpf,$email){
     try {
-        $sql_User ="UPDATE Cliente SET loginUser = :name, senha = :password WHERE idUser = :id_User";
+        $sql_User ="UPDATE Cliente SET loginUser = :name, senha = :password, telefone = :telefone, cpf = :cpf, email = :email WHERE idUser = :UserId";
         $db_User = $this->conn->prepare($sql_User);
         $db_User->bindParam(":name",$name);
         $db_User->bindParam(":password",$password);
-        $db_User->bindParam(":id_User",$id_User);
+        $db_User->bindParam(":telefone",$telefone);
+        $db_User->bindParam(":cpf",$cpf);
+        $db_User->bindParam(":email",$email);
+        $db_User->bindParam(":UserId",$UserId);
 
         if($db_User->execute()){
             return true;
