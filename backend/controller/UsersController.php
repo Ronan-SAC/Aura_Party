@@ -233,4 +233,113 @@ public function DeleteUser($id_User){
 //User Section//
 
 
+
+//Espaços Section//
+
+public function getALLLocations(){
+    try {
+        $sql_loc = "SELECT * FROM Espacos";
+        $db_loc = $this->conn->prepare($sql_loc);
+        $db_loc -> execute();
+        $Locations = $db_loc ->fetchAll(PDO::FETCH_ASSOC);
+        return $Locations;
+
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+}
+
+
+public function registerLocation($name,$endereco,$tipo,$descricaoEspaco,$lotacaoMax){
+    try {
+        $sql_loc = "INSERT INTO Espacos (nomeEspaco,endereco,tipo,descricaoEspaco,lotacaoMax) VALUES (:name, :endereco, :tipo, :descricaoEspaco, :lotacaoMax )";
+        $db_loc = $this->conn->prepare($sql_loc);
+        $db_loc->bindParam(":name",$name);
+        $db_loc->bindParam(":endereco",$endereco);
+        $db_loc->bindParam(":tipo",$tipo);
+        $db_loc->bindParam(":descricaoEspaco",$descricaoEspaco);
+        $db_loc->bindParam(":lotacaoMax",$lotacaoMax);
+
+        if($db_loc->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+
+
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+}
+
+public function getLocationById($id_Location){
+    try {
+        $sql_loc ="SELECT * FROM Espacos WHERE idEspaco = :id_Location";
+        $db_loc = $this->conn->prepare($sql_loc);
+        $db_loc->bindParam(":id_Location",$id_Location);
+        $db_loc->execute();
+        $Locations = $db_loc->fetch(PDO::FETCH_ASSOC);
+
+        if($Locations){
+            return $Locations;
+        }
+        else{
+            return false;
+        }
+
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+
+}
+
+
+public function UpdateLocation($LocationId,$name,$endereco,$tipo,$descricaoEspaco,$lotacaoMax){
+    try {
+        $sql_loc ="UPDATE Espacos SET nomeEspaco = :name, endereco = :endereco, tipo = :tipo, descricaoEspaco = :descricaoEspaco, lotacaoMax = :lotacaoMax WHERE idEspaco = :LocationId";
+        $db_loc = $this->conn->prepare($sql_loc);
+        $db_loc->bindParam(":name",$name);
+        $db_loc->bindParam(":endereco",$endereco);
+        $db_loc->bindParam(":tipo",$tipo);
+        $db_loc->bindParam(":descricaoEspaco",$descricaoEspaco);
+        $db_loc->bindParam(":lotacaoMax",$lotacaoMax);
+        $db_loc->bindParam(":LocationId",$LocationId);
+
+        if($db_loc->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+
+}
+
+
+public function DeleteLocation($id_Location){
+    try {
+        $sql_loc ="DELETE FROM Espacos WHERE idEspaco = :id_Location";
+        $db_loc = $this->conn->prepare($sql_loc);
+        $db_loc->bindParam(":id_Location",$id_Location);
+
+        if($db_loc->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+        
+        catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+
 }
