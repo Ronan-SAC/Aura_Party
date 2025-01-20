@@ -250,15 +250,18 @@ public function getALLLocations(){
 }
 
 
-public function registerLocation($name,$endereco,$tipo,$descricaoEspaco,$lotacaoMax){
+public function registerLocation($name,$endereco,$tipo,$descricaoEspaco,$lotacaoMax,$date_Espaco,$horario_inicio,$horario_fim){
     try {
-        $sql_loc = "INSERT INTO Espacos (nomeEspaco,endereco,tipo,descricaoEspaco,lotacaoMax) VALUES (:name, :endereco, :tipo, :descricaoEspaco, :lotacaoMax )";
+        $sql_loc = "INSERT INTO Espacos (nomeEspaco,endereco,tipo,descricaoEspaco,lotacaoMax,date_Espaco,horario_inicio,horario_fim) VALUES (:name, :endereco, :tipo, :descricaoEspaco, :lotacaoMax, :date_Espaco, :horario_inicio, :horario_fim )";
         $db_loc = $this->conn->prepare($sql_loc);
         $db_loc->bindParam(":name",$name);
         $db_loc->bindParam(":endereco",$endereco);
         $db_loc->bindParam(":tipo",$tipo);
         $db_loc->bindParam(":descricaoEspaco",$descricaoEspaco);
         $db_loc->bindParam(":lotacaoMax",$lotacaoMax);
+        $db_loc->bindParam(":date_Espaco",$date_Espaco);
+        $db_loc->bindParam(":horario_inicio",$horario_inicio);
+        $db_loc->bindParam(":horario_fim",$horario_fim);
 
         if($db_loc->execute()){
             return true;
@@ -296,15 +299,18 @@ public function getLocationById($id_Location){
 }
 
 
-public function UpdateLocation($LocationId,$name,$endereco,$tipo,$descricaoEspaco,$lotacaoMax){
+public function UpdateLocation($name,$endereco,$tipo,$descricaoEspaco,$lotacaoMax,$date_Espaco,$horario_inicio,$horario_fim){
     try {
-        $sql_loc ="UPDATE Espacos SET nomeEspaco = :name, endereco = :endereco, tipo = :tipo, descricaoEspaco = :descricaoEspaco, lotacaoMax = :lotacaoMax WHERE idEspaco = :LocationId";
+        $sql_loc ="UPDATE Espacos SET nomeEspaco = :name, endereco = :endereco, tipo = :tipo, descricaoEspaco = :descricaoEspaco, lotacaoMax = :lotacaoMax, date_Espaco = :date_Espaco, horario_inicio = :horario_inicio, horario_fim = :horario_fim WHERE idEspaco = :LocationId";
         $db_loc = $this->conn->prepare($sql_loc);
         $db_loc->bindParam(":name",$name);
         $db_loc->bindParam(":endereco",$endereco);
         $db_loc->bindParam(":tipo",$tipo);
         $db_loc->bindParam(":descricaoEspaco",$descricaoEspaco);
         $db_loc->bindParam(":lotacaoMax",$lotacaoMax);
+        $db_loc->bindParam(":date_Espaco",$date_Espaco);
+        $db_loc->bindParam(":horario_inicio",$horario_inicio);
+        $db_loc->bindParam(":horario_fim",$horario_fim);
         $db_loc->bindParam(":LocationId",$LocationId);
 
         if($db_loc->execute()){
