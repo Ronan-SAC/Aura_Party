@@ -15,6 +15,7 @@ include __DIR__ ."../../../backend/controller/UsersController.php";
 $UsersController = new UsersController();
 $Clientes = $UsersController->getALLUser();
 $Adms = $UsersController->getALLAdmin();
+$Espaços = $UsersController->getALLLocations();
 
 
 ?>
@@ -137,6 +138,84 @@ $Adms = $UsersController->getALLAdmin();
         <form action="../../backend/router/UsersRouter.php?ValidationCRUD=Delete_User" method="POST">
           <button type="submit" name="delete">Delete</button>
           <input type="hidden" name="idUser" value='.$item["idUser"].'>
+        </form>
+
+        </td>
+
+        </tr>'; 
+
+           
+        }
+
+        ?>
+ 
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+    <h2>Lista de Espaços</h2>
+    <a href="./Register/Locations/index.php"> <button>Cadastrar</button></a>
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    ID
+                </td>
+
+                <td>
+                    ID Usuario Cadastrado
+                </td>
+
+                <td>
+                    Nome
+                </td>
+                <td>
+                    Endereço
+                </td>
+                <td>
+                    Tipo
+                </td>
+                <td>
+                    Data da Locação
+                </td>
+                <td>
+                    Horario de Inicio
+                </td>
+                <td>
+                    Horario do Fim
+                </td>
+                
+            </tr>
+        </thead>
+        <tbody>
+
+        <?php
+
+        foreach($Espaços as $item){
+
+           echo 
+           '<tr>'.
+           '<td>' . $item["idEspaco"] .    '</td>' .
+           '<td>' . $item["idUser"] .    '</td>' .
+           '<td>' . $item["nomeEspaco"] . '</td>'. 
+           '<td>' . $item["tipo"] . '</td>'.
+           '<td>' . $item["descricaoEspaco"] . '</td>'.
+           '<td>' . $item["lotacaoMax"] . '</td>'.
+           '<td>' . $item["date_Espaco"] . '</td>'.
+           '<td>' . $item["horario_inicio"] . '</td>'.
+           '<td>' . $item["horario_fim"] . '</td>'.
+
+           '<td><a href="./Register/Locations/index.php?idLocation='.$item["idEspaco"].'">Edit</a>
+
+        <form action="../../backend/router/UsersRouter.php?ValidationCRUD=Delete_Location" method="POST">
+          <button type="submit" name="delete">Delete</button>
+          <input type="hidden" name="idLocation" value='.$item["idEspaco"].'>
         </form>
 
         </td>

@@ -105,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     case 'Delete_User':
         
                         $Delete_User = $UsersController->DeleteUser($_POST["idUser"]);
-                        if($Delete_Adm){
+                        if($Delete_User){
                             header("Location: ../../pages/Admin/index.php");
                         }
                         else{
@@ -115,6 +115,77 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         
                         break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        case 'Register_Location':
+                            if(!( empty($_POST['name']) || empty($_POST["enderecoEspaco"]) || empty($_POST["tipo"])    || empty($_POST["descricaoEspaco"]) || empty($_POST["lotacaoMax"]) || empty($_POST["date_Espaco"]) || empty($_POST["horario_inicio"]) || empty($_POST["horario_fim"]) )){
+                
+                                $Register_New_Location = $UsersController->registerLocation($_POST["name"],$_POST["enderecoEspaco"],$_POST["tipo"], $_POST["descricaoEspaco"], $_POST["lotacaoMax"],$_POST["date_Espaco"],$_POST["horario_inicio"],$_POST["horario_fim"]);
+                            
+                                if($Register_New_Location){
+                                    header("Location: ../../pages/Admin/index.php");
+                                }
+                                else{
+                                    header("Location: ../../pages/Admin/Register/Locations/index.php?erro=true");
+                                }
+                            }
+                            else{
+                                header("Location: ../../pages/Admin/Register/Locations/index.php?erro=true");
+                            }
+                            break;
+                
+                
+                
+                         case 'Edit_Location':
+                            if(!( empty($_POST['name']) || empty($_POST["enderecoEspaco"]) || empty($_POST["tipo"])    || empty($_POST["descricaoEspaco"]) || empty($_POST["lotacaoMax"]) || empty($_POST["date_Espaco"]) || empty($_POST["horario_inicio"]) || empty($_POST["horario_fim"]) )){
+                
+                                $Edit_Location = $UsersController->UpdateLocation($_POST['LocationId'],$_POST["name"],$_POST["enderecoEspaco"],$_POST["tipo"], $_POST["descricaoEspaco"], $_POST["lotacaoMax"],$_POST["date_Espaco"],$_POST["horario_inicio"],$_POST["horario_fim"]);
+                                
+                                if($Edit_Location){
+                                    header("Location: ../../pages/Admin/index.php");
+                                }
+                                else{
+                                    header("Location: ../../pages/Admin/Register/Locations/index.php?erro=true");
+                                }
+                            }
+                            else{
+                                header("Location: ../../pages/Admin/Register/Locations/index.php?erro=true");
+                            }
+                            break;
+                
+                
+                            case 'Delete_Location':
+                
+                                $Delete_Location = $UsersController->DeleteLocation($_POST["idLocation"]);
+                                if($Delete_Location){
+                                    header("Location: ../../pages/Admin/index.php");
+                                }
+                                else{
+                                    header("Location: ../../pages/Admin/index.php?erro=True");
+                                }
+                
+                
+                
+                                break;
 
 
 
