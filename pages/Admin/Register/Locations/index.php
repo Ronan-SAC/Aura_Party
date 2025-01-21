@@ -49,12 +49,6 @@ if(isset($_GET["idLocation"])){
         <input type= "text" name="descricaoEspaco" value="<?php if (isset($_GET["idLocation"])) {echo $Locations["descricaoEspaco"];} else {echo "";} ?>">
         <h1>Lotação Maxima</h1>
         <input type= "text" name="lotacaoMax" value="<?php if (isset($_GET["idLocation"])) {echo $Locations["lotacaoMax"];} else {echo "";} ?>">
-        <h1>Data_Espaço</h1>
-        <input type= "text" name="date_Espaco" value="<?php if (isset($_GET["idLocation"])) {echo $Locations["date_Espaco"];} else {echo "";} ?>">
-        <h1>Horario Inicial</h1>
-        <input type= "text" name="horario_inicio" value="<?php if (isset($_GET["idLocation"])) {echo $Locations["horario_inicio"];} else {echo "";} ?>">
-        <h1>Horario Final</h1>
-        <input type= "text" name="horario_fim" value="<?php if (isset($_GET["idLocation"])) {echo $Locations["horario_fim"];} else {echo "";} ?>">
 
          <button type="submit"><?php echo $Validation ?></button>
     </form>

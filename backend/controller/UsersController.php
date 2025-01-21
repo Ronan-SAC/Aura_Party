@@ -250,18 +250,15 @@ public function getALLLocations(){
 }
 
 
-public function registerLocation($name,$enderecoEspaco,$tipo,$descricaoEspaco,$lotacaoMax,$date_Espaco,$horario_inicio,$horario_fim){
+public function registerLocation($name,$enderecoEspaco,$tipo,$descricaoEspaco,$lotacaoMax){
     try {
-        $sql_loc = "INSERT INTO Espacos (nomeEspaco,enderecoEspaco,tipo,descricaoEspaco,lotacaoMax,date_Espaco,horario_inicio,horario_fim) VALUES (:name, :enderecoEspaco, :tipo, :descricaoEspaco, :lotacaoMax, :date_Espaco, :horario_inicio, :horario_fim )";
+        $sql_loc = "INSERT INTO Espacos (nomeEspaco,enderecoEspaco,tipo,descricaoEspaco,lotacaoMax) VALUES (:name, :enderecoEspaco, :tipo, :descricaoEspaco, :lotacaoMax )";
         $db_loc = $this->conn->prepare($sql_loc);
         $db_loc->bindParam(":name",$name);
         $db_loc->bindParam(":enderecoEspaco",$enderecoEspaco);
         $db_loc->bindParam(":tipo",$tipo);
         $db_loc->bindParam(":descricaoEspaco",$descricaoEspaco);
         $db_loc->bindParam(":lotacaoMax",$lotacaoMax);
-        $db_loc->bindParam(":date_Espaco",$date_Espaco);
-        $db_loc->bindParam(":horario_inicio",$horario_inicio);
-        $db_loc->bindParam(":horario_fim",$horario_fim);
 
         if($db_loc->execute()){
             return true;
@@ -299,18 +296,15 @@ public function getLocationById($id_Location){
 }
 
 
-public function UpdateLocation($LocationId,$name,$enderecoEspaco,$tipo,$descricaoEspaco,$lotacaoMax,$date_Espaco,$horario_inicio,$horario_fim){
+public function UpdateLocation($LocationId,$name,$enderecoEspaco,$tipo,$descricaoEspaco,$lotacaoMax){
     try {
-        $sql_loc ="UPDATE Espacos SET nomeEspaco = :name, enderecoEspaco = :enderecoEspaco, tipo = :tipo, descricaoEspaco = :descricaoEspaco, lotacaoMax = :lotacaoMax, date_Espaco = :date_Espaco, horario_inicio = :horario_inicio, horario_fim = :horario_fim WHERE idEspaco = :LocationId";
+        $sql_loc ="UPDATE Espacos SET nomeEspaco = :name, enderecoEspaco = :enderecoEspaco, tipo = :tipo, descricaoEspaco = :descricaoEspaco, lotacaoMax = :lotacaoMax WHERE idEspaco = :LocationId";
         $db_loc = $this->conn->prepare($sql_loc);
         $db_loc->bindParam(":name",$name);
         $db_loc->bindParam(":enderecoEspaco",$enderecoEspaco);
         $db_loc->bindParam(":tipo",$tipo);
         $db_loc->bindParam(":descricaoEspaco",$descricaoEspaco);
         $db_loc->bindParam(":lotacaoMax",$lotacaoMax);
-        $db_loc->bindParam(":date_Espaco",$date_Espaco);
-        $db_loc->bindParam(":horario_inicio",$horario_inicio);
-        $db_loc->bindParam(":horario_fim",$horario_fim);
         $db_loc->bindParam(":LocationId",$LocationId);
 
         if($db_loc->execute()){
@@ -346,6 +340,27 @@ public function DeleteLocation($id_Location){
             //throw $th;
         }
     }
+
+
+ public function GetUserLocationById($id_LocationUser){
+    try {
+        $sql_loc = "SELECT Cliente.loginUser FROM Cliente INNER JOIN Espacos ON Cliente.IdUser = Espacos.idUser WHERE Espacos.idUser = :id_LocationUser";
+        $db_loc = $this->conn->prepare($sql_loc);
+        $db_loc->bindParam(":id_LocationUser",$id_LocationUser);
+        $db_loc->execute();
+        $User = $db_loc->fetchColumn();
+
+        if($User){
+            return $User;
+        }
+        else{
+            return false;
+        }
+
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
+ }   
 
 
 }

@@ -124,6 +124,9 @@ $Espaços = $UsersController->getALLLocations();
 
         foreach($Clientes as $item){
 
+
+
+
            echo 
            '<tr>'.
            '<td>' . $item["idUser"] .    '</td>' .
@@ -143,7 +146,6 @@ $Espaços = $UsersController->getALLLocations();
         </td>
 
         </tr>'; 
-
            
         }
 
@@ -169,26 +171,20 @@ $Espaços = $UsersController->getALLLocations();
                 </td>
 
                 <td>
-                    ID Usuario Cadastrado
+                    Usuario Cadastrado
                 </td>
 
                 <td>
                     Nome
                 </td>
                 <td>
-                    Endereço
-                </td>
-                <td>
                     Tipo
                 </td>
                 <td>
-                    Data da Locação
+                    Descrição
                 </td>
                 <td>
-                    Horario de Inicio
-                </td>
-                <td>
-                    Horario do Fim
+                    Lotação Maxima
                 </td>
                 
             </tr>
@@ -199,17 +195,19 @@ $Espaços = $UsersController->getALLLocations();
 
         foreach($Espaços as $item){
 
+            $Userlocation = $UsersController->GetUserLocationById($item['idUser']);
+
+
+
+
            echo 
            '<tr>'.
            '<td>' . $item["idEspaco"] .    '</td>' .
-           '<td>' . $item["idUser"] .    '</td>' .
+           '<td>' . $Userlocation . '</td>' .
            '<td>' . $item["nomeEspaco"] . '</td>'. 
            '<td>' . $item["tipo"] . '</td>'.
            '<td>' . $item["descricaoEspaco"] . '</td>'.
            '<td>' . $item["lotacaoMax"] . '</td>'.
-           '<td>' . $item["date_Espaco"] . '</td>'.
-           '<td>' . $item["horario_inicio"] . '</td>'.
-           '<td>' . $item["horario_fim"] . '</td>'.
 
            '<td><a href="./Register/Locations/index.php?idLocation='.$item["idEspaco"].'">Edit</a>
 
