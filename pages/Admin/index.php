@@ -16,6 +16,7 @@ $UsersController = new UsersController();
 $Clientes = $UsersController->getALLUser();
 $Adms = $UsersController->getALLAdmin();
 $Espaços = $UsersController->getALLLocations();
+$Reservas = $UsersController->getALLReservations();
 
 
 ?>
@@ -171,11 +172,10 @@ $Espaços = $UsersController->getALLLocations();
                 </td>
 
                 <td>
-                    Usuario Cadastrado
-                </td>
-
-                <td>
                     Nome
+                </td>
+                <td>
+                    Endereço
                 </td>
                 <td>
                     Tipo
@@ -195,7 +195,6 @@ $Espaços = $UsersController->getALLLocations();
 
         foreach($Espaços as $item){
 
-            $Userlocation = $UsersController->GetUserLocationById($item['idUser']);
 
 
 
@@ -203,8 +202,8 @@ $Espaços = $UsersController->getALLLocations();
            echo 
            '<tr>'.
            '<td>' . $item["idEspaco"] .    '</td>' .
-           '<td>' . $Userlocation . '</td>' .
            '<td>' . $item["nomeEspaco"] . '</td>'. 
+           '<td>' . $item["enderecoEspaco"] . '</td>'. 
            '<td>' . $item["tipo"] . '</td>'.
            '<td>' . $item["descricaoEspaco"] . '</td>'.
            '<td>' . $item["lotacaoMax"] . '</td>'.
@@ -227,6 +226,77 @@ $Espaços = $UsersController->getALLLocations();
  
         </tbody>
     </table>
+
+
+
+
+
+
+
+
+
+    <h2>Lista de Reservas</h2>
+    <a href="./Register/Locations/index.php"> <button>Cadastrar</button></a>
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    ID 
+                </td>
+
+                <td>
+                    Cliente
+                </td>
+                <td>
+                    Espaço
+                </td>
+                <td>
+                    Data Marcada
+                </td>
+                
+            </tr>
+        </thead>
+        <tbody>
+
+
+
+    <?php
+
+foreach($Reservas as $item){
+
+    $UserReservation = $UsersController->GetUserReservationById($item['idUser']);
+    $LocationReservation = $UsersController->GetLocationReservationById($item['idEspaco']);
+
+
+   echo 
+   '<tr>'.
+   '<td>' . $item["idReserva"] .    '</td>' .
+   '<td>' . $UserReservation . '</td>'. 
+   '<td>' . $LocationReservation . '</td>'. 
+   '<td>' . $item["data_reserva"] . '</td>'.
+
+   '<td><a href="./Register/Reservations/index.php?idReservations='.$item["idReserva"].'">Edit</a>
+
+<form action="../../backend/router/UsersRouter.php?ValidationCRUD=Delete_Reservations" method="POST">
+  <button type="submit" name="delete">Delete</button>
+  <input type="hidden" name="idLocation" value='.$item["idEspaco"].'>
+</form>
+
+</td>
+
+</tr>'; 
+
+   
+}
+
+?>
+
+</tbody>
+</table>
+
+
+
+    
 
     
     

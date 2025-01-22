@@ -13,6 +13,8 @@ Password: ""
 */
 
 
+drop database aura_party;
+
 create database Aura_party;
 use Aura_party;
 
@@ -46,20 +48,26 @@ drop table Espacos;
 
 create table Espacos(
 idEspaco int primary key auto_increment,
-idUser int,
 nomeEspaco varchar(50),
 enderecoEspaco varchar (80) not null,
 tipo enum ("Casa", "Salão de festas", "Apartamento","Club") ,
 descricaoEspaco varchar(500),
-lotacaoMax int not null,
-date_Espaco date,
-horario_inicio time,
-horario_fim time,
-foreign key(idUser) references Cliente(idUser)
+lotacaoMax int not null
 );
 
-insert into Espacos (nomeEspaco,enderecoEspaco,tipo,descricaoEspaco,lotacaoMax,date_Espaco,horario_inicio,horario_fim) values (
-'Casa do João', 'rua do joão', 'Casa','a casa do joao muito legal','10','2025-01-30','17:00','21:00'
+drop table Reservas;
+
+create table Reservas(
+idReserva int primary key auto_increment,
+idUser int,
+idEspaco int,
+data_reserva date unique,
+FOREIGN KEY (idUser) references Cliente(idUser),
+FOREIGN KEY (idEspaco) references Espacos(idEspaco)
+);
+
+insert into Reservas (idUser,idEspaco,data_reserva)values(
+'1','1','2025-01-24'
 );
 
 select * from Espacos;
