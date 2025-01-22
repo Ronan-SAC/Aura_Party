@@ -359,15 +359,13 @@ public function DeleteLocation($id_Location){
     }
     
     
-    public function registerReservations($name,$enderecoEspaco,$tipo,$descricaoEspaco,$lotacaoMax){
+    public function registerReservations($Espaco,$User,$Data){
         try {
-            $sql_loc = "INSERT INTO Espacos (nomeEspaco,enderecoEspaco,tipo,descricaoEspaco,lotacaoMax) VALUES (:name, :enderecoEspaco, :tipo, :descricaoEspaco, :lotacaoMax )";
+            $sql_loc = "INSERT INTO Reservas (idEspaco,idUsuario,Data_) VALUES (:Espaco, :User, :Data)";
             $db_loc = $this->conn->prepare($sql_loc);
-            $db_loc->bindParam(":name",$name);
-            $db_loc->bindParam(":enderecoEspaco",$enderecoEspaco);
-            $db_loc->bindParam(":tipo",$tipo);
-            $db_loc->bindParam(":descricaoEspaco",$descricaoEspaco);
-            $db_loc->bindParam(":lotacaoMax",$lotacaoMax);
+            $db_loc->bindParam(":Espaco",$Espaco);
+            $db_loc->bindParam(":User",$User);
+            $db_loc->bindParam(":Data",$Data);
     
             if($db_loc->execute()){
                 return true;
@@ -430,11 +428,11 @@ public function DeleteLocation($id_Location){
     }
     
     
-    public function DeleteReservations($id_Location){
+    public function DeleteReservations($id_Reservation){
         try {
-            $sql_loc ="DELETE FROM Espacos WHERE idEspaco = :id_Location";
+            $sql_loc ="DELETE FROM Reservas WHERE idReserva = :id_Reservation";
             $db_loc = $this->conn->prepare($sql_loc);
-            $db_loc->bindParam(":id_Location",$id_Location);
+            $db_loc->bindParam(":id_Reservation",$id_Reservation);
     
             if($db_loc->execute()){
                     return true;
@@ -461,7 +459,7 @@ public function DeleteLocation($id_Location){
 
  public function GetUserReservationById($id_ReservationUser){
     try {
-        $sql_loc = "SELECT Cliente.loginUser FROM Cliente INNER JOIN Reservas ON Cliente.IdUser = Reservas.idUser WHERE Reservas.idUser = :id_ReservationUser";
+        $sql_loc = "SELECT Cliente.loginUser FROM Cliente INNER JOIN Reservas ON Cliente.IdUser = Reservas.idUsuario WHERE Reservas.idUsuario = :id_ReservationUser";
         $db_loc = $this->conn->prepare($sql_loc);
         $db_loc->bindParam(":id_ReservationUser",$id_ReservationUser);
         $db_loc->execute();
@@ -499,6 +497,53 @@ public function GetLocationReservationById($id_ReservationLocation){
             throw $th;
     }
  }   
+
+
+
+
+
+ public function GetIdUser($User){
+    try{
+        $sql_User = "SELECT idUser FROM Cliente WHERE loginUser = :User";
+        $db_User = $this->conn->prepare($sql_User);
+        $db_User->bindParam(":User",$User);
+        $db_User->execute();
+        $User = $db_User->fetchColumn();
+
+        if($User){
+            return $User;
+        }
+        else{
+            return false;
+        }
+    }
+     catch (\Throwable $th) {
+        throw $th;
+}
+    
+ }
+
+
+ public function GetIdLocation($Location){
+    try{
+        $sql_User = "SELECT idEspaco FROM Espacos WHERE nomeEspaco = :Location";
+        $db_User = $this->conn->prepare($sql_User);
+        $db_User->bindParam(":Location",$Location);
+        $db_User->execute();
+        $Location = $db_User->fetchColumn();
+
+        if($Location){
+            return $Location;
+        }
+        else{
+            return false;
+        }
+    }
+     catch (\Throwable $th) {
+        throw $th;
+}
+    
+ }
 
 
 }

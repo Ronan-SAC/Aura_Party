@@ -4,7 +4,7 @@ class Database{
     private $server = "localhost";
     private $dbnome = "Aura_party";
     private $user = "root";
-    private $password = "9584";
+    private $password = "";
 
     public function connect(){
         try {

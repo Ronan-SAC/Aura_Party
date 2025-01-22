@@ -217,20 +217,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-                        case 'Register_Location':
-                            if(!( empty($_POST['name']) || empty($_POST["enderecoEspaco"]) || empty($_POST["tipo"])    || empty($_POST["descricaoEspaco"]) || empty($_POST["lotacaoMax"]) )){
+                        case 'Register_Reservation':
+                            if(!( empty($_POST['User']) || empty($_POST["Espaco"]) || empty($_POST["Data"]))){
+
+                                $GetIdUser = $UsersController->GetIdUser($_POST['User']);
+                                $GetIdLocation = $UsersController->GetIdLocation($_POST['Espaco']);
                 
-                                $Register_New_Location = $UsersController->registerLocation($_POST["name"],$_POST["enderecoEspaco"],$_POST["tipo"], $_POST["descricaoEspaco"], $_POST["lotacaoMax"]);
+                               if($GetIdUser || $GetIdLocation == true){
+
+                                $Register_New_Reservation = $UsersController->registerReservations($GetIdLocation,$GetIdUser,$_POST["Data"]);
                             
-                                if($Register_New_Location){
+                                if($Register_New_Reservation){
                                     header("Location: ../../pages/Admin/index.php");
                                 }
                                 else{
-                                    header("Location: ../../pages/Admin/Register/Locations/index.php?erro=true");
+                                    header("Location: ../../pages/Admin/Register/Reservations/index.php?erro=true");
                                 }
+
+                               }
+
+                               else{
+                                header("Location: ../../pages/Admin/Register/Reservations/index.php?erro=Usuario/Local_não_encontrado");
+                               }
                             }
                             else{
-                                header("Location: ../../pages/Admin/Register/Locations/index.php?erro=true");
+                                header("Location: ../../pages/Admin/Register/Reservations/index.php?erro=true");
                             }
                             break;
                 
@@ -254,10 +265,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             break;
                 
                 
-                            case 'Delete_Location':
+                            case 'Delete_Reservations':
                 
-                                $Delete_Location = $UsersController->DeleteLocation($_POST["idLocation"]);
-                                if($Delete_Location){
+                                $Delete_Reservation = $UsersController->DeleteReservations($_POST["idReservations"]);
+                                if($Delete_Reservation){
                                     header("Location: ../../pages/Admin/index.php");
                                 }
                                 else{

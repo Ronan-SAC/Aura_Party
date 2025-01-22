@@ -19,6 +19,7 @@ $Espaços = $UsersController->getALLLocations();
 $Reservas = $UsersController->getALLReservations();
 
 
+
 ?>
 
 
@@ -32,6 +33,7 @@ $Reservas = $UsersController->getALLReservations();
     <title>Admin_Home</title>
 </head>
 <body>
+
     Admin_Home
     <form method="post">
         <button type="submit" name="logout">Deslogar</button>
@@ -165,6 +167,7 @@ $Reservas = $UsersController->getALLReservations();
     <h2>Lista de Espaços</h2>
     <a href="./Register/Locations/index.php"> <button>Cadastrar</button></a>
     <table>
+        
         <thead>
             <tr>
                 <td>
@@ -202,6 +205,7 @@ $Reservas = $UsersController->getALLReservations();
            echo 
            '<tr>'.
            '<td>' . $item["idEspaco"] .    '</td>' .
+
            '<td>' . $item["nomeEspaco"] . '</td>'. 
            '<td>' . $item["enderecoEspaco"] . '</td>'. 
            '<td>' . $item["tipo"] . '</td>'.
@@ -214,6 +218,7 @@ $Reservas = $UsersController->getALLReservations();
           <button type="submit" name="delete">Delete</button>
           <input type="hidden" name="idLocation" value='.$item["idEspaco"].'>
         </form>
+        <a href="./Register/Reservations/index.php?idEspaco='.$item["idEspaco"].'"> <button>Cadastrar Reserva</button></a>
 
         </td>
 
@@ -236,7 +241,6 @@ $Reservas = $UsersController->getALLReservations();
 
 
     <h2>Lista de Reservas</h2>
-    <a href="./Register/Locations/index.php"> <button>Cadastrar</button></a>
     <table>
         <thead>
             <tr>
@@ -264,7 +268,7 @@ $Reservas = $UsersController->getALLReservations();
 
 foreach($Reservas as $item){
 
-    $UserReservation = $UsersController->GetUserReservationById($item['idUser']);
+    $UserReservation = $UsersController->GetUserReservationById($item['idUsuario']);
     $LocationReservation = $UsersController->GetLocationReservationById($item['idEspaco']);
 
 
@@ -273,13 +277,13 @@ foreach($Reservas as $item){
    '<td>' . $item["idReserva"] .    '</td>' .
    '<td>' . $UserReservation . '</td>'. 
    '<td>' . $LocationReservation . '</td>'. 
-   '<td>' . $item["data_reserva"] . '</td>'.
+   '<td>' . $item["data_"] . '</td>'.
 
    '<td><a href="./Register/Reservations/index.php?idReservations='.$item["idReserva"].'">Edit</a>
 
 <form action="../../backend/router/UsersRouter.php?ValidationCRUD=Delete_Reservations" method="POST">
   <button type="submit" name="delete">Delete</button>
-  <input type="hidden" name="idLocation" value='.$item["idEspaco"].'>
+  <input type="hidden" name="idReservations" value='.$item["idReserva"].'>
 </form>
 
 </td>
