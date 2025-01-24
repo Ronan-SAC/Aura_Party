@@ -37,7 +37,7 @@ if(isset($_GET["idUser"])){
     <title>Cadastro_User</title>
 </head>
 <body>
-    <h2> <?php echo $Validation ?> </h2>
+    <h2> <?php if ($Validation == "Register_User"){echo 'Registre um novo Cliente';} else {echo 'Edite um Cliente';} ?> </h2>
     <form action="../../../../backend/router/UsersRouter.php?ValidationCRUD=<?php echo $Validation ?> " method="POST">
         <input type="hidden" name="UserId" value="<?php if(isset($_GET["idUser"])) { echo $Users["idUser"];} else {echo "";}?>">
         <h3>Nome</h3>
@@ -50,7 +50,7 @@ if(isset($_GET["idUser"])){
         <input type="text" name="cpf" value="<?php if(isset($_GET["idUser"])) {echo $Users["cpf"];} else {echo "";} ?>">
         <h3>Email</h3>
         <input type="text" name="email" value="<?php if(isset($_GET["idUser"])) {echo $Users["email"];} else {echo "";} ?>">
-        <button type="submit"><?php echo $Validation ?></button>
+        <button type="submit"><?php if ($Validation == "Register_User"){echo 'Registre um novo Cliente';} else {echo 'Edite um Cliente';} ?></button>
     </form>
 
 

@@ -41,7 +41,7 @@ $Reservas = $UsersController->getALLReservations();
 
 
     <h2>Lista de Admin</h2>
-    <a href="./Register/Admin/index.php"> <button>Register</button></a>
+    <a href="./Register/Admin/index.php"> <button>Cadastrar</button></a>
     <table>
         <thead>
             <tr>
@@ -145,6 +145,7 @@ $Reservas = $UsersController->getALLReservations();
           <button type="submit" name="delete">Delete</button>
           <input type="hidden" name="idUser" value='.$item["idUser"].'>
         </form>
+        <a href="./Register/Reservations/index.php?idUser='.$item["idUser"].'"> <button>Cadastrar Reserva</button></a>
 
         </td>
 

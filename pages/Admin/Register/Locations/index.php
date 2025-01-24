@@ -35,7 +35,7 @@ if(isset($_GET["idLocation"])){
     <title>Cadastro_Adm</title>
 </head>
 <body>
-    <h2> <?php echo $Validation ?> </h2>
+    <h2> <?php if ($Validation == "Register_Location"){echo 'Registre um novo Local';} else {echo 'Edite um Local';} ?> </h2>
     <form action="../../../../backend/router/UsersRouter.php?ValidationCRUD=<?php echo $Validation ?> " method="POST">
         <input type="hidden" name="LocationId" value="<?php if(isset($_GET["idLocation"])) { echo $Locations["idEspaco"];} else {echo "";}?>">
 
@@ -50,7 +50,7 @@ if(isset($_GET["idLocation"])){
         <h1>Lotação Maxima</h1>
         <input type= "text" name="lotacaoMax" value="<?php if (isset($_GET["idLocation"])) {echo $Locations["lotacaoMax"];} else {echo "";} ?>">
 
-         <button type="submit"><?php echo $Validation ?></button>
+         <button type="submit"><?php if ($Validation == "Register_Location"){echo 'Registre um novo Local';} else {echo 'Edite um Local';} ?></button>
     </form>
 
 

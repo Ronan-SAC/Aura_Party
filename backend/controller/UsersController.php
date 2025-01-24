@@ -403,17 +403,15 @@ public function DeleteLocation($id_Location){
     }
     
     
-    public function UpdateReservations($LocationId,$name,$enderecoEspaco,$tipo,$descricaoEspaco,$lotacaoMax){
+    public function UpdateReservations($idReserva,$Espaco,$User,$Data){
         try {
-            $sql_loc ="UPDATE Espacos SET nomeEspaco = :name, enderecoEspaco = :enderecoEspaco, tipo = :tipo, descricaoEspaco = :descricaoEspaco, lotacaoMax = :lotacaoMax WHERE idEspaco = :LocationId";
+            $sql_loc ="UPDATE Reservas SET idEspaco = :Espaco, idUsuario = :User, data_ = :Data_ WHERE idReserva = :idReserva";
             $db_loc = $this->conn->prepare($sql_loc);
-            $db_loc->bindParam(":name",$name);
-            $db_loc->bindParam(":enderecoEspaco",$enderecoEspaco);
-            $db_loc->bindParam(":tipo",$tipo);
-            $db_loc->bindParam(":descricaoEspaco",$descricaoEspaco);
-            $db_loc->bindParam(":lotacaoMax",$lotacaoMax);
-            $db_loc->bindParam(":LocationId",$LocationId);
-    
+            $db_loc->bindParam(":Espaco",$Espaco);
+            $db_loc->bindParam(":User",$User);
+            $db_loc->bindParam(":Data_",$Data);
+            $db_loc->bindParam(":idReserva",$idReserva);
+
             if($db_loc->execute()){
                 return true;
             }
