@@ -297,9 +297,9 @@ public function getLocationById($id_Location){
 }
 
 
-public function UpdateLocation($LocationId,$name,$enderecoEspaco,$tipo,$descricaoEspaco,$lotacaoMax){
+public function UpdateLocation($LocationId,$name,$enderecoEspaco,$tipo,$descricaoEspaco,$lotacaoMax,$imagem_local){
     try {
-        $sql_loc ="UPDATE Espacos SET nomeEspaco = :name, enderecoEspaco = :enderecoEspaco, tipo = :tipo, descricaoEspaco = :descricaoEspaco, lotacaoMax = :lotacaoMax WHERE idEspaco = :LocationId";
+        $sql_loc ="UPDATE Espacos SET nomeEspaco = :name, enderecoEspaco = :enderecoEspaco, tipo = :tipo, descricaoEspaco = :descricaoEspaco, lotacaoMax = :lotacaoMax, imagem_local = :imagem_local WHERE idEspaco = :LocationId";
         $db_loc = $this->conn->prepare($sql_loc);
         $db_loc->bindParam(":name",$name);
         $db_loc->bindParam(":enderecoEspaco",$enderecoEspaco);
@@ -307,6 +307,7 @@ public function UpdateLocation($LocationId,$name,$enderecoEspaco,$tipo,$descrica
         $db_loc->bindParam(":descricaoEspaco",$descricaoEspaco);
         $db_loc->bindParam(":lotacaoMax",$lotacaoMax);
         $db_loc->bindParam(":LocationId",$LocationId);
+        $db_loc->bindParam(":imagem_local",$imagem_local);
 
         if($db_loc->execute()){
             return true;

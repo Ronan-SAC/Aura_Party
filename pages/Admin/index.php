@@ -214,7 +214,7 @@ $Reservas = $UsersController->getALLReservations();
            '<td>' . $item["tipo"] . '</td>'.
            '<td>' . $item["descricaoEspaco"] . '</td>'.
            '<td>' . $item["lotacaoMax"] . '</td>'.
-           '<td><img src='.$item["imagem_local"].' width ="75" height="75" alt="imagem"> </td>'.
+           '<td><img src=../../imgs_local_db/'.$item["imagem_local"].' width ="75" height="75" alt="imagem"> </td>'.
 
            '<td><a href="./Register/Locations/index.php?idLocation='.$item["idEspaco"].'">Edit</a>
 
