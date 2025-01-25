@@ -250,15 +250,16 @@ public function getALLLocations(){
 }
 
 
-public function registerLocation($name,$enderecoEspaco,$tipo,$descricaoEspaco,$lotacaoMax){
+public function registerLocation($name,$enderecoEspaco,$tipo,$descricaoEspaco,$lotacaoMax,$imagem_local){
     try {
-        $sql_loc = "INSERT INTO Espacos (nomeEspaco,enderecoEspaco,tipo,descricaoEspaco,lotacaoMax) VALUES (:name, :enderecoEspaco, :tipo, :descricaoEspaco, :lotacaoMax )";
+        $sql_loc = "INSERT INTO Espacos (nomeEspaco,enderecoEspaco,tipo,descricaoEspaco,lotacaoMax,imagem_local) VALUES (:name, :enderecoEspaco, :tipo, :descricaoEspaco, :lotacaoMax, :imagem_local )";
         $db_loc = $this->conn->prepare($sql_loc);
         $db_loc->bindParam(":name",$name);
         $db_loc->bindParam(":enderecoEspaco",$enderecoEspaco);
         $db_loc->bindParam(":tipo",$tipo);
         $db_loc->bindParam(":descricaoEspaco",$descricaoEspaco);
         $db_loc->bindParam(":lotacaoMax",$lotacaoMax);
+        $db_loc->bindParam(":imagem_local",$imagem_local);
 
         if($db_loc->execute()){
             return true;

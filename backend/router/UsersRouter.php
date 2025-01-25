@@ -137,19 +137,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
                         case 'Register_Location':
-                            if(!( empty($_POST['name']) || empty($_POST["enderecoEspaco"]) || empty($_POST["tipo"])    || empty($_POST["descricaoEspaco"]) || empty($_POST["lotacaoMax"]) )){
-                
-                                $Register_New_Location = $UsersController->registerLocation($_POST["name"],$_POST["enderecoEspaco"],$_POST["tipo"], $_POST["descricaoEspaco"], $_POST["lotacaoMax"]);
+                            if(!( empty($_POST['name']) || empty($_POST["enderecoEspaco"]) || empty($_POST["tipo"])    || empty($_POST["descricaoEspaco"]) || empty($_POST["lotacaoMax"]) || empty($_FILES["Imagem"]['name']) )){
+
+                                $nomedoarquivo = uniqid();
+                                move_uploaded_file($_FILES["Imagem"]["tmp_name"],"../../pages/Admin/Register/Locations/img_local/".$nomedoarquivo);
+                                $image_path  = "../../pages/Admin/Register/Locations/img_local/".$nomedoarquivo;
+
+                                $Register_New_Location = $UsersController->registerLocation($_POST["name"],$_POST["enderecoEspaco"],$_POST["tipo"], $_POST["descricaoEspaco"], $_POST["lotacaoMax"], $image_path);
                             
                                 if($Register_New_Location){
                                     header("Location: ../../pages/Admin/index.php");
                                 }
                                 else{
-                                    header("Location: ../../pages/Admin/Register/Locations/index.php?erro=true");
+                                    header("Location: ../../pages/Admin/Register/Locations/index.php?erro=true_2");
                                 }
                             }
                             else{
-                                header("Location: ../../pages/Admin/Register/Locations/index.php?erro=true");
+                                header("Location: ../../pages/Admin/Register/Locations/index.php?erro=true_1");
                             }
                             break;
                 
@@ -174,7 +178,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 
                 
                             case 'Delete_Location':
-                
+
+                                $getLocationById = $UsersController->getLocationById($_POST['idLocation']);
+                                $img_local = $getLocationById['imagem_local'];
+
+                                if (file_exists($img_local)) { 
+                                    unlink($img_local);  
+                                
+                                }
+
                                 $Delete_Location = $UsersController->DeleteLocation($_POST["idLocation"]);
                                 if($Delete_Location){
                                     header("Location: ../../pages/Admin/index.php");

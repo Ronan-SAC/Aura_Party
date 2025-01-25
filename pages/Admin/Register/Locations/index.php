@@ -36,7 +36,7 @@ if(isset($_GET["idLocation"])){
 </head>
 <body>
     <h2> <?php if ($Validation == "Register_Location"){echo 'Registre um novo Local';} else {echo 'Edite um Local';} ?> </h2>
-    <form action="../../../../backend/router/UsersRouter.php?ValidationCRUD=<?php echo $Validation ?> " method="POST">
+    <form action="../../../../backend/router/UsersRouter.php?ValidationCRUD=<?php echo $Validation ?> " method="POST" enctype="multipart/form-data">
         <input type="hidden" name="LocationId" value="<?php if(isset($_GET["idLocation"])) { echo $Locations["idEspaco"];} else {echo "";}?>">
 
         <h1>Nome</h1>
@@ -49,7 +49,9 @@ if(isset($_GET["idLocation"])){
         <input type= "text" name="descricaoEspaco" value="<?php if (isset($_GET["idLocation"])) {echo $Locations["descricaoEspaco"];} else {echo "";} ?>">
         <h1>Lotação Maxima</h1>
         <input type= "text" name="lotacaoMax" value="<?php if (isset($_GET["idLocation"])) {echo $Locations["lotacaoMax"];} else {echo "";} ?>">
-
+        <h1>Imagem do Local</h1>
+        <input type="file" name="Imagem" accept="image/*">
+        <h1></h1>
          <button type="submit"><?php if ($Validation == "Register_Location"){echo 'Registre um novo Local';} else {echo 'Edite um Local';} ?></button>
     </form>
 
