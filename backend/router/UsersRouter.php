@@ -63,6 +63,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
+                case 'Create_User':
+                    if(!( empty($_POST['name']) || empty($_POST["password"]) || empty($_POST["telefone"])    || empty($_POST["cpf"]) || empty($_POST["email"])  )){
+        
+                        $Register_New_User = $UsersController->registerUser($_POST["name"],$_POST["password"],$_POST["telefone"], $_POST["cpf"], $_POST["email"]);
+                    
+                        if($Register_New_User){
+                            header("Location: ../../pages/User/index.php");
+                        }
+                        else{
+                            header("Location: ../../pages/User/create_user/index.php?erro=dadosinvalidos");
+                        }
+                    }
+                    else{
+                        header("Location: ../../pages/User/create_user/index.php?erro=dadosinvalidos");
+                    }
+                    break;
 
 
                 case 'Register_User':
