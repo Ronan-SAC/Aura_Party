@@ -167,7 +167,7 @@ echo
             </div>
             <div class="mb-3">
               <label for="locationImage" class="form-label">Imagem do Local</label>
-              <input name='Imagem' type="file" class="form-control" id="locationImage" accept="image/*">
+              <input name='Imagem' type="file" class="form-control" id="locationImage">
             </div>
         </div>
         <div class="modal-footer">

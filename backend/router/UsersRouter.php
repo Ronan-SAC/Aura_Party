@@ -177,7 +177,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                          case 'Edit_Location':
                             if(!( empty($_POST['name']) || empty($_POST["enderecoEspaco"]) || empty($_POST["tipo"])    || empty($_POST["descricaoEspaco"]) || empty($_POST["lotacaoMax"]) || empty($_POST["imagem_local"]) )){
 
-                                move_uploaded_file($_FILES["Imagem"]["tmp_name"],"../../imgs_local_db/".$_POST["imagem_local"]);
 
                                 $Edit_Location = $UsersController->UpdateLocation($_POST['idEspaco'],$_POST["name"],$_POST["enderecoEspaco"],$_POST["tipo"], $_POST["descricaoEspaco"], $_POST["lotacaoMax"], $_POST["imagem_local"]);
                                 
@@ -196,7 +195,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 
                             case 'Delete_Location':
 
-                                $getLocationById = $UsersController->getLocationById($_POST['idLocation']);
+                                $getLocationById = $UsersController->getLocationById($_POST['idEspaco']);
+
                                 $img_local = $getLocationById['imagem_local'];
 
                                 if (file_exists("../../imgs_local_db/".$img_local)) { 

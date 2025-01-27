@@ -44,18 +44,20 @@ insert into Adm (loginUser,senhaAdm)values(
 'admin','123'
 );
 
+drop table Espacos;
 
 create table Espacos(
 idEspaco int primary key auto_increment,
 nomeEspaco varchar(50) not null,
-enderecoEspaco varchar (80) not null,
-tipo enum ("Casa", "Salão de festas", "Apartamento","Club") not null,
+enderecoEspaco varchar (255) not null,
+tipo enum ("Casa", "Salão de Festas", "Apartamento","Club") not null,
 descricaoEspaco varchar(500),
 lotacaoMax int not null,
 imagem_local varchar(255)
 );
 
-
+INSERT INTO Espacos (nomeEspaco,enderecoEspaco,tipo,descricaoEspaco,lotacaoMax,imagem_local) VALUES ("Ronan", "13", "Casa", "dsadasd", "1", "6797ba291cd00" );
+	
 create table Reservas(
 idReserva int primary key auto_increment,
 idUsuario int not null,
