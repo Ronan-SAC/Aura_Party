@@ -52,7 +52,7 @@ nomeEspaco varchar(50) not null,
 enderecoEspaco varchar (255) not null,
 tipo enum ("Casa", "Salão de Festas", "Apartamento","Club") not null,
 descricaoEspaco varchar(500),
-lotacaoMax int not null,
+lotacaoMax int not null CHECK (lotacaoMax > 0),
 imagem_local varchar(255)
 );
 
