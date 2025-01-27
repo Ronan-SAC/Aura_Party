@@ -60,10 +60,11 @@ $calendar = generateCalendar($month, $year, $datasReservadas);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário de Reservas</title>
+    <link rel="stylesheet" href="../../../../intro/styles.css">
 </head>
 <body>
 
-<a href="../index.php?idLocation=<?php echo $IdLocation ?>" >Voltar</a>
+<a  href="../index.php?idLocation=<?php echo $IdLocation ?>"  style="text-decoration:none; font-size:large; color:#f48e21;">Voltar</a>
 
     <h1>Calendário de Reservas</h1>
     
@@ -82,8 +83,16 @@ $calendar = generateCalendar($month, $year, $datasReservadas);
 
 <style>
     body {
+    background: linear-gradient(45deg, #d2001a , #7462ff, #f48e21);
+    color: #ddd;
     font-family: Arial, sans-serif;
     text-align: center;
+    animation: color 12s ease-in-out infinite;
+    height: 100vh;
+    width: 100%;
+    background-size: 300% 300%;
+    margin-top: 20px;
+            
 }
 
 #calendar {
@@ -91,29 +100,32 @@ $calendar = generateCalendar($month, $year, $datasReservadas);
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
     margin-bottom: 30px;
+    color: #ddd;
 }
 
 #calendar div {
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #f48e21;
     cursor: pointer;
 }
 
 .reservado {
-    background-color: #ffcccc;  /* Fundo vermelho claro para dias reservados */
+    background-color: #f48e21;  /* Fundo vermelho claro para dias reservados */
     color: #fff;
 }
 
 button {
     padding: 10px 20px;
-    background-color: #28a745;
+    background-color: #7462ff;
     color: white;
-    border: none;
+    border: 1px solid #f48e21;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #f48e21;
+    border: 1px solid #7462ff;
 }
 </style>
 </html>

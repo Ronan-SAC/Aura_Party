@@ -23,9 +23,14 @@ if(isset($_SESSION["id_Adm"])){
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Link do Animate.css para animações -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="./intro/styles.css">
   <style>
     body {
             background: linear-gradient(45deg, #d2001a , #7462ff, #f48e21);
+            animation: color 12s ease-in-out infinite;
+            height: 100vh;
+            width: 100%;
+            background-size: 300% 300%;
     }
 
     /* Torna as labels e links brancos */

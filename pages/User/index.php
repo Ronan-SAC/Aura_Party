@@ -28,6 +28,7 @@ $Espaços = $UsersController->getALLLocations();
   <title>Bootstrap Demo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
   <link rel="icon" href="../../assets/aura.png" />
+  <link rel="stylesheet" href="../../intro/styles.css">
   <style>
     
     *{
@@ -38,6 +39,10 @@ $Espaços = $UsersController->getALLLocations();
     body {
       background: linear-gradient(45deg,  #d2001a , #7462ff, #f48e21);
       color: #fff;
+      animation: color 12s ease-in-out infinite;
+            height: 100vh;
+            width: 100%;
+            background-size: 300% 300%;
     }
 
     img{

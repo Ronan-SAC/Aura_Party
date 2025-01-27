@@ -340,13 +340,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                             header("Location: ../../pages/User/register_location/register_reservation/index.php?idLocation=".$_POST['idEspaco']);
                                         }
                                         else{
-                                            header("Location: ../../pages/User/register_location/register_reservation/index.php?idLocation=erro");
+                                            header("Location: ../../pages/User/register_location/register_reservation/index.php?idLocation=".$_POST['idEspaco']."&LocalJaRegistrado=1");
                                         }
         
                                        }
 
                                     else{
-                                        header("Location: ../../pages/User/register_location/register_reservation/index.php?idLocation=erro");
+                                        header("Location: ../../pages/User/register_location/register_reservation/index.php?idLocation=".$_POST['idEspaco']."&LocalJaRegistrado=2");
                                     }
                                     break;
                                 
