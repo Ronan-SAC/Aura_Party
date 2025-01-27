@@ -60,8 +60,16 @@ create table Reservas(
 idReserva int primary key auto_increment,
 idUsuario int not null,
 idEspaco int not null,
-data_ date unique not null,
+data_ date not null,
 FOREIGN KEY (idUsuario) references Cliente(idUser),
 FOREIGN KEY (idEspaco) references Espacos(idEspaco)
 );
 
+drop table Reservas;
+
+select * from Espacos;
+
+
+
+
+select * from Reservas;

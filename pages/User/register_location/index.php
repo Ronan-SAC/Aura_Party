@@ -70,6 +70,8 @@ $Locations = $UsersController->getLocationById($_GET["idLocation"]);
     </div>
   </nav>
 
+
+
   <!-- Conteúdo -->
 
 
@@ -93,7 +95,9 @@ $Locations = $UsersController->getLocationById($_GET["idLocation"]);
           <li> <?php echo 'Tipo do Local:' ,'<br>', $Locations['tipo']; ?> </li>
           <li> <?php echo 'Maxímo de Pessoas:','<br>', $Locations['lotacaoMax'], ' Pessoas'; ?> </li>
         </ul>
-        <button class="btn btn-primary">Reservar</button>
+        <form action="./register_reservation/index.php?idLocation=<?php echo $Locations['idEspaco']; ?>" method="post">
+            <button class="btn btn-primary">Reservar</button>
+        </form>
       </div>
     </div>
   </div>

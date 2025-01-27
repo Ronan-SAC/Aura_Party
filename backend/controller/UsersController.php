@@ -361,9 +361,9 @@ public function DeleteLocation($id_Location){
     }
     
     
-    public function registerReservations($Espaco,$User,$Data){
+    public function registerReservations($User,$Espaco,$Data){
         try {
-            $sql_loc = "INSERT INTO Reservas (idEspaco,idUsuario,Data_) VALUES (:Espaco, :User, :Data)";
+            $sql_loc = "INSERT INTO Reservas (idUsuario,idEspaco,Data_) VALUES (:User, :Espaco, :Data)";
             $db_loc = $this->conn->prepare($sql_loc);
             $db_loc->bindParam(":Espaco",$Espaco);
             $db_loc->bindParam(":User",$User);
@@ -546,4 +546,23 @@ public function GetLocationReservationById($id_ReservationLocation){
  }
 
 
+
+
+ public function getALLReservationsbyIdLocation($id_Location){
+    try{
+        $sql_User = "SELECT * FROM Reservas WHERE idEspaco = :id_Location";
+        $db_User = $this->conn->prepare($sql_User);
+        $db_User->bindParam(":id_Location",$id_Location);
+        $db_User->execute();
+        $Reservations = $db_User ->fetchAll(PDO::FETCH_ASSOC);
+        return $Reservations;
+
+    
+        }
+        catch (\Throwable $th) {
+            throw $th;
+    }
+ 
 }
+    
+ }

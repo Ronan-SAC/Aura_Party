@@ -10,303 +10,73 @@ if(isset($_POST['logout'])){
     unset($_SESSION["id_Adm"]);
 }
 
-include __DIR__ ."../../../backend/controller/UsersController.php";
-
-$UsersController = new UsersController();
-$Clientes = $UsersController->getALLUser();
-$Adms = $UsersController->getALLAdmin();
-$Espaços = $UsersController->getALLLocations();
-$Reservas = $UsersController->getALLReservations();
-
-
-
 ?>
+
 
 
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../assets/oculos.png">
-    <title>Admin_Home</title>
-</head>
-<body>
-
-    Admin_Home
-    <form method="post">
-        <button type="submit" name="logout">Deslogar</button>
-    </form>
-
-
-    <h2>Lista de Admin</h2>
-    <a href="./Register/Admin/index.php"> <button>Cadastrar</button></a>
-    <table>
-        <thead>
-            <tr>
-                <td>
-                    ID
-                </td>
-                <td>
-                    Nome
-                </td>
-                <td>
-                    Senha
-                </td>
-                <td>
-                    Ações
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-
-        <?php
-
-        foreach($Adms as $item){
-
-           echo 
-           '<tr>'.
-           '<td>' . $item["idAdm"] .    '</td>' .
-           '<td>' . $item["loginUser"] . '</td>'. 
-           '<td>' . $item["senhaAdm"] . '</td>'.
-
-           '<td><a href="./Register/Admin/index.php?idAdm='.$item["idAdm"].'">Edit</a>
-
-        <form action="../../backend/router/UsersRouter.php?ValidationCRUD=Delete_Adm" method="POST">
-          <button type="submit" name="delete">Delete</button>
-          <input type="hidden" name="idAdm" value='.$item["idAdm"].'>
-        </form>
-
-        </td>
-
-        </tr>'; 
-
-           
-        }
-
-        ?>
- 
-        </tbody>
-    </table>
-
-
-
-    <h2>Lista de Clientes</h2>
-    <a href="./Register/User/index.php"> <button>Cadastrar</button></a>
-    <table>
-        <thead>
-            <tr>
-                <td>
-                    ID
-                </td>
-                <td>
-                    Nome
-                </td>
-                <td>
-                    Senha
-                </td>
-                <td>
-                    Telefone
-                </td>
-                <td>
-                    Cpf
-                </td>
-                <td>
-                    Email
-                </td>
-                <td>
-                    Ações
-                </td>
-                
-            </tr>
-        </thead>
-        <tbody>
-
-        <?php
-
-        foreach($Clientes as $item){
-
-
-
-
-           echo 
-           '<tr>'.
-           '<td>' . $item["idUser"] .    '</td>' .
-           '<td>' . $item["loginUser"] . '</td>'. 
-           '<td>' . $item["senha"] . '</td>'.
-           '<td>' . $item["telefone"] . '</td>'.
-           '<td>' . $item["cpf"] . '</td>'.
-           '<td>' . $item["email"] . '</td>'.
-
-           '<td><a href="./Register/User/index.php?idUser='.$item["idUser"].'">Edit</a>
-
-        <form action="../../backend/router/UsersRouter.php?ValidationCRUD=Delete_User" method="POST">
-          <button type="submit" name="delete">Delete</button>
-          <input type="hidden" name="idUser" value='.$item["idUser"].'>
-        </form>
-        <a href="./Register/Reservations/index.php?idUser='.$item["idUser"].'"> <button>Cadastrar Reserva</button></a>
-
-        </td>
-
-        </tr>'; 
-           
-        }
-
-        ?>
- 
-        </tbody>
-    </table>
-
-
-
-
-
-
-
-
-    <h2>Lista de Espaços</h2>
-    <a href="./Register/Locations/index.php"> <button>Cadastrar</button></a>
-    <table>
-        
-        <thead>
-            <tr>
-                <td>
-                    ID
-                </td>
-
-                <td>
-                    Nome
-                </td>
-                <td>
-                    Endereço
-                </td>
-                <td>
-                    Tipo
-                </td>
-                <td>
-                    Descrição
-                </td>
-                <td>
-                    Lotação Maxima
-                </td>
-                <td>
-                    Imagem do local
-                </td>
-                
-            </tr>
-        </thead>
-        <tbody>
-
-        <?php
-
-        foreach($Espaços as $item){
-
-
-
-
-
-           echo 
-           '<tr>'.
-           '<td>' . $item["idEspaco"] .    '</td>' .
-           '<td>' . $item["nomeEspaco"] . '</td>'. 
-           '<td>' . $item["enderecoEspaco"] . '</td>'. 
-           '<td>' . $item["tipo"] . '</td>'.
-           '<td>' . $item["descricaoEspaco"] . '</td>'.
-           '<td>' . $item["lotacaoMax"] . '</td>'.
-           '<td><img src=../../imgs_local_db/'.$item["imagem_local"].' width ="75" height="75" alt="imagem"> </td>'.
-
-           '<td><a href="./Register/Locations/index.php?idLocation='.$item["idEspaco"].'">Edit</a>
-
-        <form action="../../backend/router/UsersRouter.php?ValidationCRUD=Delete_Location" method="POST">
-          <button type="submit" name="delete">Delete</button>
-          <input type="hidden" name="idLocation" value='.$item["idEspaco"].'>
-        </form>
-        <a href="./Register/Reservations/index.php?idEspaco='.$item["idEspaco"].'"> <button>Cadastrar Reserva</button></a>
-
-        </td>
-
-        </tr>'; 
-
-           
-        }
-
-        ?>
- 
-        </tbody>
-    </table>
-
-
-
-
-
-
-
-
-
-    <h2>Lista de Reservas</h2>
-    <table>
-        <thead>
-            <tr>
-                <td>
-                    ID 
-                </td>
-
-                <td>
-                    Cliente
-                </td>
-                <td>
-                    Espaço
-                </td>
-                <td>
-                    Data Marcada
-                </td>
-                
-            </tr>
-        </thead>
-        <tbody>
-
-
-
-    <?php
-
-foreach($Reservas as $item){
-
-    $UserReservation = $UsersController->GetUserReservationById($item['idUsuario']);
-    $LocationReservation = $UsersController->GetLocationReservationById($item['idEspaco']);
-
-
-   echo 
-   '<tr>'.
-   '<td>' . $item["idReserva"] .    '</td>' .
-   '<td>' . $UserReservation . '</td>'. 
-   '<td>' . $LocationReservation . '</td>'. 
-   '<td>' . $item["data_"] . '</td>'.
-
-   '<td><a href="./Register/Reservations/index.php?idReservations='.$item["idReserva"].'">Edit</a>
-
-<form action="../../backend/router/UsersRouter.php?ValidationCRUD=Delete_Reservations" method="POST">
-  <button type="submit" name="delete">Delete</button>
-  <input type="hidden" name="idReservations" value='.$item["idReserva"].'>
-</form>
-
-</td>
-
-</tr>'; 
-
-   
-}
-
-?>
-
-</tbody>
-</table>
-
-
-
-    
-
-    
-    
-</body>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Home</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" href="../../assets/aura.png">
+  </head>
+
+  <body>
+    <!--NavBar-->
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><img src="../../assets/aura.png" alt="logo" width="80"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+            <li class="nav-item">
+                <form method="post">
+                   <button class="nav-link" type="submit" name="logout">Deslogar</button>
+                </form>
+
+          </li>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+      <a href="./Register/Admin/index.php"><button type="button" class="btn btn-outline-primary">lista de Admin</button> </a>
+        <a href="./Register/User/index.php"> <button type="button" class="btn btn-outline-primary">Lista de clientes </button> </a>
+        <a href="./Register/Locations/index.php"> <button type="button" class="btn btn-outline-primary">Lista de espaços</button> </a>
+        <a href="./Register/Reservations/index.php"> <button type="button" class="btn btn-outline-primary">Lista de reservas </button> </a>
+      </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

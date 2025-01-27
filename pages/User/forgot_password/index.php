@@ -120,7 +120,7 @@
 
       
       setTimeout(function() {
-        window.location.href = "login.php"; 
+        window.location.href = "../../../index.php"; 
       }, 5000);
     });
   </script>

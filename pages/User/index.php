@@ -181,33 +181,11 @@ if(isset($Espaços)){
 
 
 
-
-
-
-  <!-- Paginação -->
-  <div class="container mt-5">
-    <nav aria-label="Page navigation">
-      <ul class="pagination d-flex justify-content-center">
-        <li class="page-item disabled">
-          <a class="page-link">Anterior</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active" aria-current="page">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Próximo</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-
   <!-- Footer -->
-  <footer class="pt-auto  ">
+  <footer class="pt-auto mt-5 ">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-md-3 mb-3 text-center text-md-start">
+        <div class="col-md-3 mb-3 text-center text-md-start ">
           <img src="../../assets/auradevs.png" alt="Logo" class="img-fluid rounded">
         </div>
         <div class="col-md-3 mb-3">
