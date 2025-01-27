@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  <style>
+    .container {
+      margin-top: 50px;
+    }
+    .btn-action {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"
+            ><img src="./img/aura.png" alt="logo" width="80"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./adminHome.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+  <div class="container">
+    <h2 class="mb-4">Lista de Clientes</h2>
+    <!-- Botão Adicionar Cliente -->
+    <div class="mb-4">
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addClientModal">Adicionar Cliente</button>
+    </div>
+    
+    <!-- Tabela de Clientes -->
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Senha</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Email</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>João Silva</td>
+          <td>senha123</td>
+          <td>(11) 99999-9999</td>
+          <td>123.456.789-00</td>
+          <td>joao@example.com</td>
+          <td>
+            <button class="btn btn-warning btn-action" data-bs-toggle="modal" data-bs-target="#editClientModal">Editar</button>
+            <button class="btn btn-danger btn-action">Excluir</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Ana Souza</td>
+          <td>senha456</td>
+          <td>(21) 88888-8888</td>
+          <td>987.654.321-00</td>
+          <td>ana@example.com</td>
+          <td>
+            <button class="btn btn-warning btn-action" data-bs-toggle="modal" data-bs-target="#editClientModal">Editar</button>
+            <button class="btn btn-danger btn-action">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal para Adicionar Cliente -->
+  <div class="modal fade" id="addClientModal" tabindex="-1" aria-labelledby="addClientModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addClientModalLabel">Adicionar Novo Cliente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="clientName" class="form-label">Nome</label>
+              <input type="text" class="form-control" id="clientName" placeholder="Digite o nome do cliente">
+            </div>
+            <div class="mb-3">
+              <label for="clientPassword" class="form-label">Senha</label>
+              <input type="password" class="form-control" id="clientPassword" placeholder="Digite a senha do cliente">
+            </div>
+            <div class="mb-3">
+              <label for="clientPhone" class="form-label">Telefone</label>
+              <input type="text" class="form-control" id="clientPhone" placeholder="Digite o telefone do cliente">
+            </div>
+            <div class="mb-3">
+              <label for="clientCpf" class="form-label">CPF</label>
+              <input type="text" class="form-control" id="clientCpf" placeholder="Digite o CPF do cliente">
+            </div>
+            <div class="mb-3">
+              <label for="clientEmail" class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="clientEmail" placeholder="Digite o e-mail do cliente">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Editar Cliente -->
+  <div class="modal fade" id="editClientModal" tabindex="-1" aria-labelledby="editClientModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editClientModalLabel">Editar Cliente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="editClientName" class="form-label">Nome</label>
+              <input type="text" class="form-control" id="editClientName" value="João Silva">
+            </div>
+            <div class="mb-3">
+              <label for="editClientPassword" class="form-label">Senha</label>
+              <input type="password" class="form-control" id="editClientPassword" value="senha123">
+            </div>
+            <div class="mb-3">
+              <label for="editClientPhone" class="form-label">Telefone</label>
+              <input type="text" class="form-control" id="editClientPhone" value="(11) 99999-9999">
+            </div>
+            <div class="mb-3">
+              <label for="editClientCpf" class="form-label">CPF</label>
+              <input type="text" class="form-control" id="editClientCpf" value="123.456.789-00">
+            </div>
+            <div class="mb-3">
+              <label for="editClientEmail" class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="editClientEmail" value="joao@example.com">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Salvar Alterações</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Link do JavaScript do Bootstrap 5 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" href="./img/aura.png">
+  </head>
+  <style>
+    .container {
+      margin-top: 50px;
+    }
+    .btn-action {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+   <!--NavBar-->
+
+   <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"
+        ><img src="./img/aura.png" alt="logo" width="80"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./adminHome.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2 class="mb-4">Lista de Reservas</h2>
+    <!-- Botão Adicionar Reserva -->
+    <div class="mb-4">
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addReservationModal">Adicionar Reserva</button>
+    </div>
+    
+    <!-- Tabela de Reservas -->
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Cliente</th>
+          <th scope="col">Espaço</th>
+          <th scope="col">Data Marcada</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>João Silva</td>
+          <td>Parque Central</td>
+          <td>2025-02-01</td>
+          <td>
+            <button class="btn btn-warning btn-action" data-bs-toggle="modal" data-bs-target="#editReservationModal">Editar</button>
+            <button class="btn btn-danger btn-action">Excluir</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Maria Oliveira</td>
+          <td>Auditório Azul</td>
+          <td>2025-02-15</td>
+          <td>
+            <button class="btn btn-warning btn-action" data-bs-toggle="modal" data-bs-target="#editReservationModal">Editar</button>
+            <button class="btn btn-danger btn-action">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal para Adicionar Reserva -->
+  <div class="modal fade" id="addReservationModal" tabindex="-1" aria-labelledby="addReservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addReservationModalLabel">Adicionar Nova Reserva</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="reservationClient" class="form-label">Cliente</label>
+              <input type="text" class="form-control" id="reservationClient" placeholder="Digite o nome do cliente">
+            </div>
+            <div class="mb-3">
+              <label for="reservationSpace" class="form-label">Espaço</label>
+              <input type="text" class="form-control" id="reservationSpace" placeholder="Digite o nome do espaço reservado">
+            </div>
+            <div class="mb-3">
+              <label for="reservationDate" class="form-label">Data Marcada</label>
+              <input type="date" class="form-control" id="reservationDate">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Editar Reserva -->
+  <div class="modal fade" id="editReservationModal" tabindex="-1" aria-labelledby="editReservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editReservationModalLabel">Editar Reserva</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="editReservationClient" class="form-label">Cliente</label>
+              <input type="text" class="form-control" id="editReservationClient" value="João Silva">
+            </div>
+            <div class="mb-3">
+              <label for="editReservationSpace" class="form-label">Espaço</label>
+              <input type="text" class="form-control" id="editReservationSpace" value="Parque Central">
+            </div>
+            <div class="mb-3">
+              <label for="editReservationDate" class="form-label">Data Marcada</label>
+              <input type="date" class="form-control" id="editReservationDate" value="2025-02-01">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Salvar Alterações</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Link do JavaScript do Bootstrap 5 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
