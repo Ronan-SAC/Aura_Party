@@ -43,6 +43,40 @@ $Locations = $UsersController->getALLLocations();
       width: 80px;
       height: auto;
     }
+    .container-table{
+      width: min(900px, 100% - 3rem);
+      margin-inline: auto;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    table{
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    @media (max-width: 440px){
+
+      table{
+        border: 3px solid white
+      }
+      table thead tr{
+        display: none
+      }
+      table tr{
+        display:block
+      }
+      table th, table td{
+        padding: .5em
+      }
+      table td{
+        text-align: right;
+        display: block;
+      }
+      table td::before{
+        content: attr(data-title) ": ";
+        float: left;
+      }
+    }
+    
   </style>
 </head>
 <body>
@@ -82,6 +116,7 @@ $Locations = $UsersController->getALLLocations();
     </div>
     
     <!-- Tabela de Locais -->
+    <div class="container-table"></div>
     <table class="table table-dark table-striped">
       <thead>
         <tr>
@@ -102,15 +137,15 @@ $Locations = $UsersController->getALLLocations();
 
 echo 
 '<tr>'.
-'<td>' . $item["idEspaco"] .    '</td>' .
-'<td>' . $item["nomeEspaco"] . '</td>'. 
-'<td>' . $item["enderecoEspaco"] . '</td>'.
-'<td>' . $item["tipo"] . '</td>'.
-'<td>' . $item["descricaoEspaco"] . '</td>'.
-'<td>' . $item["lotacaoMax"] . '</td>'.
-'<td><img src=../../../../imgs_local_db/'.$item["imagem_local"].' width ="75" height="75" alt="imagem"> </td>'.
+"<td data-title='Id'>" . $item["idEspaco"] .    '</td>' .
+"<td data-title='Local'>" . $item["nomeEspaco"] . '</td>'. 
+"<td data-title='Endereço'>" . $item["enderecoEspaco"] . '</td>'.
+"<td data-title='Tipo'>" . $item["tipo"] . '</td>'.
+"<td data-title='Desc'>" . $item["descricaoEspaco"] . '</td>'.
+"<td data-title='Lotação'>" . $item["lotacaoMax"] . '</td>'.
+"<td data-title='Imagem'><img src=../../../../imgs_local_db/".$item["imagem_local"].' width ="75" height="75" alt="imagem"> </td>'.
 
-'<td><a class="btn btn-warning btn-action" data-bs-target="#editClientModal"
+"<td data-title='Opções'>".'<a class="btn btn-warning btn-action" data-bs-target="#editClientModal"
     href="?idEspaco='.$item['idEspaco'].'">Editar</a>
 
 

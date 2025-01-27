@@ -37,6 +37,39 @@ $Users = $UsersController->getALLUser();
     .btn-action {
       margin-left: 5px;
     }
+    .container-table{
+      width: min(900px, 100% - 3rem);
+      margin-inline: auto;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    table{
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    @media (max-width: 440px){
+
+      table{
+        border: 3px solid white
+      }
+      table thead tr{
+        display: none
+      }
+      table tr{
+        display:block
+      }
+      table th, table td{
+        padding: .5em
+      }
+      table td{
+        text-align: right;
+        display: block;
+      }
+      table td::before{
+        content: attr(data-title) ": ";
+        float: left;
+      }
+    }
   </style>
 </head>
 <body>
@@ -77,6 +110,7 @@ $Users = $UsersController->getALLUser();
     </div>
     
     <!-- Tabela de Clientes -->
+    <div class="contatiner-table">
     <table class="table table-dark table-striped">
       <thead>
         <tr>
@@ -97,14 +131,14 @@ foreach($Users as $item){
 
    echo 
    '<tr>'.
-   '<td>' . $item["idUser"] .    '</td>' .
-   '<td>' . $item["loginUser"] . '</td>'. 
-   '<td>' . $item["senha"] . '</td>'.
-   '<td>' . $item["telefone"] . '</td>'.
-   '<td>' . $item["cpf"] . '</td>'.
-   '<td>' . $item["email"] . '</td>'.
+   "<td data-title='Id'>" . $item["idUser"] .    '</td>' .
+   "<td data-title='Usuário'>" . $item["loginUser"] . '</td>'. 
+   "<td data-title='Senha'>" . $item["senha"] . '</td>'.
+   "<td data-title='Telefone'>" . $item["telefone"] . '</td>'.
+   "<td data-title='Cpf'>" . $item["cpf"] . '</td>'.
+   "<td data-title='Email'>" . $item["email"] . '</td>'.
 
-   '<td><a class="btn btn-warning btn-action" data-bs-target="#editClientModal"
+   "<td data-title='Opções'>".'<a class="btn btn-warning btn-action" data-bs-target="#editClientModal"
        href="?idUser='.$item['idUser'].'">Editar</a>
 
 

@@ -44,6 +44,39 @@ if (isset($_GET['idAdm'])) {
     .btn-action {
       margin-left: 5px;
     }
+    .container-table{
+      width: min(900px, 100% - 3rem);
+      margin-inline: auto;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    table{
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    @media (max-width: 440px){
+
+      table{
+        border: 3px solid white
+      }
+      table thead tr{
+        display: none
+      }
+      table tr{
+        display:block
+      }
+      table th, table td{
+        padding: .5em
+      }
+      table td{
+        text-align: right;
+        display: block;
+      }
+      table td::before{
+        content: attr(data-title) ": ";
+        float: left;
+      }
+    }
   </style>
 </head>
 <body>
@@ -86,6 +119,7 @@ if (isset($_GET['idAdm'])) {
     </div>
     
     <!-- Tabela de Administradores -->
+    <div class="container-table">
     <table class="table table-dark table-striped">
       <thead>
         <tr>
@@ -103,11 +137,11 @@ foreach($Adms as $item){
 
    echo 
    '<tr>'.
-   '<td>' . $item["idAdm"] .    '</td>' .
-   '<td>' . $item["loginUser"] . '</td>'. 
-   '<td>' . $item["senhaAdm"] . '</td>'.
+   "<td data-title='Id'>" . $item["idAdm"] .    '</td>' .
+   "<td data-title='Usuário'>" . $item["loginUser"] . '</td>'. 
+   "<td data-title='Senha'>" . $item["senhaAdm"] . '</td>'.
 
-   '<td><a class="btn btn-warning btn-action" data-bs-target="#editAdminModal"
+   "<td data-title='Opções'>".'<a class="btn btn-warning btn-action" data-bs-target="#editAdminModal"
        href="?idAdm='.$item['idAdm'].'">Editar</a>
 
 

@@ -29,6 +29,41 @@ $Reservas = $UsersController->getALLReservations();
     <title>Admin_Reservation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="icon" href="../../../../assets/aura.png">
+<style>
+    .container-table{
+      width: min(900px, 100% - 3rem);
+      margin-inline: auto;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    table{
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    @media (max-width: 440px){
+
+      table{
+        border: 3px solid white
+      }
+      table thead tr{
+        display: none
+      }
+      table tr{
+        display:block
+      }
+      table th, table td{
+        padding: .5em
+      }
+      table td{
+        text-align: right;
+        display: block;
+      }
+      table td::before{
+        content: attr(data-title) ": ";
+        float: left;
+      }
+    }
+</style>
 </head>
 <body>
 
@@ -59,6 +94,7 @@ $Reservas = $UsersController->getALLReservations();
     </div>
     
     <!-- Tabela de Reservas -->
+    <div class="container-table">
     <table class="table table-dark table-striped">
         <thead>
             <tr>
@@ -76,14 +112,14 @@ $Reservas = $UsersController->getALLReservations();
                 $Location = $UsersController->GetLocationReservationById($item['idEspaco']);
                 echo 
                     '<tr>'.
-                    '<td>' . $item["idReserva"] . '</td>' .
-                    '<td>' . $User . '</td>'.
-                    '<td>' . $Location . '</td>'.
-                    '<td>' . $item['data_'] . '</td>'.
+                    "<td data-title='Id'>" . $item["idReserva"] . '</td>' .
+                    "<td data-title='Usuário'>" . $User . '</td>'.
+                    "<td data-title='Local'>" . $Location . '</td>'.
+                    "<td data-title='Data'>" . $item['data_'] . '</td>'.
                     
                 
 
-                   '<td><a class="btn btn-warning btn-action" data-bs-target="#editClientModal"
+                   "<td data-title='Opções'>".'<a class="btn btn-warning btn-action" data-bs-target="#editClientModal"
     href="?idReserva='.$item['idReserva'].'">Editar</a>
                       
        
