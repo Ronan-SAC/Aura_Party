@@ -189,8 +189,13 @@ echo
               <input name='enderecoEspaco' type="text" class="form-control" id="locationAddress" placeholder="Digite o endereço do local">
             </div>
             <div class="mb-3">
-              <label for="locationType" class="form-label">Tipo</label>
-              <input name='tipo' type="text" class="form-control" id="locationType" placeholder="Digite o tipo do local (Ex.: Parque, Auditório)">
+                            <label for="editLocationType" class="form-label">Tipo</label>
+                            <select name="tipo" class="form-control" list="Tipos">
+                               <option value="Casa">Casa</option>
+                               <option value="Salão de Festas" >Salão de Festa</option>
+                                <option value="Apartamento" >Apartamento</option>
+                                <option value="Club" >Club</option>
+                              </select>
             </div>
             <div class="mb-3">
               <label for="locationDescription" class="form-label">Descrição</label>
@@ -202,7 +207,7 @@ echo
             </div>
             <div class="mb-3">
               <label for="locationImage" class="form-label">Imagem do Local</label>
-              <input name='Imagem' type="file" class="form-control" id="locationImage">
+              <input name='Imagem' type="file" class="form-control" id="locationImage" accept="image/*">
             </div>
         </div>
         <div class="modal-footer">
@@ -220,7 +225,7 @@ echo
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editLocationModalLabel">Editar Local</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <a class="btn-close" data-bs-target="#editAdminModal" href="./index.php"></a>
             </div>
             <div class="modal-body">
                 <?php if (isset($_GET['idEspaco'])): ?>
@@ -239,8 +244,26 @@ echo
                             <input type="text" class="form-control" id="editLocationAddress" name="enderecoEspaco" value="<?php echo $location['enderecoEspaco']; ?>" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editLocationType" class="form-label">Tipo</label>
-                            <input type="text" class="form-control" id="editLocationType" name="tipo" value="<?php echo $location['tipo']; ?>" required>
+                        <label for="editLocationType" class="form-label">Tipo</label>
+                            <select name="tipo" class="form-control" list="Tipos">
+                              <option> <?php echo $location['tipo']; ?></option>
+                            <?php 
+
+                            if(!($location['tipo'] == "Casa")){
+                              echo "<option value='Casa'>Casa</option>";
+                            }
+                            if(!($location['tipo'] == "Salão de Festas")){
+                              echo "<option value='Salão de Festas'>Salão de Festas</option>";
+                            }
+                            if(!($location['tipo'] == "Apartamento")){
+                              echo "<option value='Apartamento'>Apartamento</option>";
+                            }
+                            if(!($location['tipo'] == "Club")){
+                              echo "<option value='Club'>Club</option>";
+                            }
+
+                            ?>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="editLocationDescription" class="form-label">Descrição</label>
@@ -251,6 +274,7 @@ echo
                             <input type="number" class="form-control" id="editLocationCapacity" name="lotacaoMax" value="<?php echo $location['lotacaoMax']; ?>" required>
                         </div>
                         <div class="mb-3">
+                            <input name='Imagem' type="file" class="form-control" id="locationImage" accept="image/*">
                             <input  type="hidden" class="form-control" id="editLocationImage" name="imagem_local" value="<?php echo $location['imagem_local']; ?>">
                         </div>
                 <?php else: ?>
@@ -258,7 +282,7 @@ echo
                 <?php endif; ?>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <a class="btn btn-secondary" data-bs-target="#editAdminModal" href="./index.php">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Salvar Alterações</button>
             </div>
             </form>

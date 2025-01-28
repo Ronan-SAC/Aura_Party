@@ -218,7 +218,7 @@ foreach($Adms as $item){
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editAdminModalLabel">Editar Admin</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <a class="btn-close" data-bs-target="#editAdminModal" href="./index.php"></a>
             </div>
             <div class="modal-body">
                 <?php if (isset($_GET['idAdm'])): ?>
@@ -237,7 +237,7 @@ foreach($Adms as $item){
                         </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <a class="btn btn-secondary" data-bs-target="#editAdminModal" href="./index.php">Cancelar</a>
                 <button type="submit" class="btn btn-primary">Salvar Alterações</button>
             </div>
                     </form>

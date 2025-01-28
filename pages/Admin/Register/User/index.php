@@ -167,7 +167,7 @@ foreach($Users as $item){
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="addClientModalLabel">Adicionar Novo Cliente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <a class="btn-close" data-bs-target="#editAdminModal" href="./index.php"></a>
         </div>
         <div class="modal-body">
         <form action="../../../../backend/router/UsersRouter.php?ValidationCRUD=Register_User" method="POST">
@@ -209,7 +209,7 @@ foreach($Users as $item){
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="editClientModalLabel">Editar Cliente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <a class="btn-close" data-bs-target="#editAdminModal" href="./index.php"></a>
       </div>
       <div class="modal-body">
         <?php if (isset($_GET['idUser'])): ?>
@@ -246,7 +246,7 @@ foreach($Users as $item){
         <?php endif; ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <a class="btn btn-secondary" data-bs-target="#editAdminModal" href="./index.php">Cancelar</a>
         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
       </div>
 

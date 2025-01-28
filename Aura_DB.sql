@@ -20,11 +20,11 @@ use Aura_party;
 
 create table Cliente(
 idUser int auto_increment primary key,
-loginUser varchar(100) not null,
+loginUser varchar(100) not null unique,
 senha varchar(30) not null,
-telefone char(11),
-cpf char(11) not null,
-email varchar(100)
+telefone char(11) unique,
+cpf char(11) not null unique,
+email varchar(100) unique
 );
 
 
@@ -35,7 +35,7 @@ insert into Cliente values(
 
 create table Adm(
 idAdm int auto_increment primary key,
-loginUser varchar(100) not null,
+loginUser varchar(100) not null unique,
 senhaAdm varchar(30) not null
 
 );
@@ -48,8 +48,8 @@ drop table Espacos;
 
 create table Espacos(
 idEspaco int primary key auto_increment,
-nomeEspaco varchar(50) not null,
-enderecoEspaco varchar (255) not null,
+nomeEspaco varchar(50) not null unique,
+enderecoEspaco varchar (255) not null unique,
 tipo enum ("Casa", "Salão de Festas", "Apartamento","Club") not null,
 descricaoEspaco varchar(500),
 lotacaoMax int not null CHECK (lotacaoMax > 0),

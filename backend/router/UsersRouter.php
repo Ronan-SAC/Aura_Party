@@ -178,6 +178,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             if(!( empty($_POST['name']) || empty($_POST["enderecoEspaco"]) || empty($_POST["tipo"])    || empty($_POST["descricaoEspaco"]) || empty($_POST["lotacaoMax"]) || empty($_POST["imagem_local"]) )){
 
 
+                                move_uploaded_file($_FILES["Imagem"]["tmp_name"],"../../imgs_local_db/".$_POST["imagem_local"]);
+
                                 $Edit_Location = $UsersController->UpdateLocation($_POST['idEspaco'],$_POST["name"],$_POST["enderecoEspaco"],$_POST["tipo"], $_POST["descricaoEspaco"], $_POST["lotacaoMax"], $_POST["imagem_local"]);
                                 
                                 if($Edit_Location){
@@ -253,8 +255,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 $Reservas = $UsersController->getALLReservationsbyIdLocation($_GET["idLocation"]);
                                 $GetIdUser = $UsersController->GetIdUser($_POST['User']);
                                 $GetIdLocation = $UsersController->GetIdLocation($_POST['Espaco']);
+                                $date = date('Y-m-d');
                 
-                               if($GetIdUser || $GetIdLocation == true){
+                               if($_POST["Data"] >= $date){
 
                                 $Register_New_Reservation = $UsersController->registerReservations($GetIdUser,$GetIdLocation,$_POST["Data"]);
                             
@@ -268,7 +271,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                }
 
                                else{
-                                header("Location: ../../pages/Admin/Register/Reservations/index.php?erro=Usuario/Local_não_encontrado");
+                                header("Location: ../../pages/Admin/Register/Reservations/index.php?erro=Usuario/Local_não_encontrado_Ou_Data_Invalida");
                                }
                             }
                             else{
@@ -333,21 +336,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 case 'Register_Reservation_User':
                                     if(!( empty($_POST['idUser']) || empty($_POST["idEspaco"]) || empty($_POST["Data"]))){
         
-        
-                                        $Register_New_Reservation = $UsersController->registerReservations($_POST['idUser'],$_POST['idEspaco'],$_POST["Data"]);
+                                        $date = date('Y-m-d');
+                
+                                        if($_POST["Data"] >= $date){
+
+                                            $Register_New_Reservation = $UsersController->registerReservations($_POST['idUser'],$_POST['idEspaco'],$_POST["Data"]);
                                     
-                                        if($Register_New_Reservation){
-                                            header("Location: ../../pages/User/register_location/register_reservation/index.php?idLocation=".$_POST['idEspaco']);
+                                            if($Register_New_Reservation){
+                                                header("Location: ../../pages/User/register_location/register_reservation/index.php?idLocation=".$_POST['idEspaco']);
+                                            }
+                                            else{
+                                                header("Location: ../../pages/User/register_location/register_reservation/index.php?idLocation=".$_POST['idEspaco']."&LocalJaRegistrado=1");
+                                            }
+
                                         }
-                                        else{
-                                            header("Location: ../../pages/User/register_location/register_reservation/index.php?idLocation=".$_POST['idEspaco']."&LocalJaRegistrado=1");
-                                        }
+                                            else{
+                                                header("Location: ../../pages/User/register_location/register_reservation/index.php?idLocation=".$_POST['idEspaco']."&LocalJaRegistrado=2");
+                                            }
+                                       
         
                                        }
 
-                                    else{
-                                        header("Location: ../../pages/User/register_location/register_reservation/index.php?idLocation=".$_POST['idEspaco']."&LocalJaRegistrado=2");
-                                    }
+    
                                     break;
                                 
                                 

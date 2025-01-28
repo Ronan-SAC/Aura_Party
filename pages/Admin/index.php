@@ -67,10 +67,10 @@ if(isset($_POST['logout'])){
       </div>
     </nav>
     <div class="btn-group" role="group" aria-label="Basic outlined example">
-      <a href="./Register/Admin/index.php"><button type="button" class="btn btn-outline-primary">lista de Admin</button> </a>
-        <a href="./Register/User/index.php"> <button type="button" class="btn btn-outline-primary">Lista de clientes </button> </a>
-        <a href="./Register/Locations/index.php"> <button type="button" class="btn btn-outline-primary">Lista de espaços</button> </a>
-        <a href="./Register/Reservations/index.php"> <button type="button" class="btn btn-outline-primary">Lista de reservas </button> </a>
+      <a href="./Register/Admin/index.php"><button type="button" class="btn btn-outline-primary">Lista de Admin</button> </a>
+        <a href="./Register/User/index.php"> <button type="button" class="btn btn-outline-primary">Lista de Clientes </button> </a>
+        <a href="./Register/Locations/index.php"> <button type="button" class="btn btn-outline-primary">Lista de Espaços</button> </a>
+        <a href="./Register/Reservations/index.php"> <button type="button" class="btn btn-outline-primary">Lista de Reservas </button> </a>
       </div>
 
     <script
