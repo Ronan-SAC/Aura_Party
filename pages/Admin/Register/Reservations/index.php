@@ -172,7 +172,7 @@ $Reservas = $UsersController->getALLReservations();
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="editReservationModalLabel">Editar Reserva</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <a class="btn-close" data-bs-target="#editAdminModal" href="./index.php"></a>
       </div>
       <div class="modal-body">
         <?php if (isset($_GET['idReserva'])): ?>
@@ -198,7 +198,7 @@ $Reservas = $UsersController->getALLReservations();
                     <input type="date" class="form-control" id="editReservationDate" name="Data" value="<?php echo $reservation['data_']; ?>" required>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a class="btn btn-secondary" data-bs-target="#editAdminModal" href="./index.php">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Salvar Alterações</button>
                 </div>
             </form>
