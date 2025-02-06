@@ -1,6 +1,7 @@
 <?php
 
 include __DIR__ ."/../db/database.php";
+include __DIR__ . "./UsersController.php";
 
 class LoginController{
 
@@ -34,24 +35,32 @@ class LoginController{
             
     }
 
-    public function Admin_Login_Validation($name,$password){
+    public function Admin_Login_Validation($name, $password) {
+        try {
+            $sql_adm = "SELECT idAdm,senhaAdm FROM Adm WHERE loginUser = :name_Adm";
+            $db_adm = $this->conn->prepare($sql_adm);
+            $db_adm->bindParam(":name_Adm", $name);
+            $db_adm->execute(); 
+            $Adm = $db_adm->fetch(PDO::FETCH_ASSOC);
 
-        $sql_adm = "SELECT * FROM Adm WHERE loginUser = :name_Adm AND senhaAdm = :password_Adm";
-        $db_adm = $this->conn->prepare($sql_adm);
-        $db_adm->bindParam(":name_Adm",$name);
-        $db_adm->bindParam(":password_Adm",$password);
-        $db_adm->execute();
-        $Adm = $db_adm->fetchAll(PDO::FETCH_ASSOC);
+            if ($Adm) {
 
-        if($Adm){
-            session_start();
-            $_SESSION["id_Adm"] = $Adm[0]["idAdm"];
-            return true;
-        }
-        else{
+                if (password_verify($password, $Adm['senhaAdm'])) {
+                    session_start();
+                    $_SESSION["id_Adm"] = $Adm["idAdm"];
+                    return true;
+                } else {
+                    return false; 
+                }
+            } 
+            
+            else {
+                return false; 
+            }
+        } 
+        catch (\Throwable $th) {
             return false;
         }
-
     }
 
 
