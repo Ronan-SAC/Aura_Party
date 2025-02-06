@@ -18,10 +18,12 @@ drop database aura_party;
 create database Aura_party;
 use Aura_party;
 
+drop table Cliente;
+
 create table Cliente(
 idUser int auto_increment primary key,
 loginUser varchar(100) not null unique,
-senha varchar(30) not null,
+senha varchar(255) not null,
 telefone char(11) unique,
 cpf char(11) not null unique,
 email varchar(100) unique
@@ -29,16 +31,21 @@ email varchar(100) unique
 
 
 
+
 insert into Cliente values(
 
 );
 
+
+drop table Adm;
+
 create table Adm(
 idAdm int auto_increment primary key,
 loginUser varchar(100) not null unique,
-senhaAdm varchar(30) not null
+senhaAdm varchar(255) not null
 
 );
+
 
 insert into Adm (loginUser,senhaAdm)values(
 'admin','123'
@@ -71,7 +78,10 @@ drop table Reservas;
 
 select * from Espacos;
 
-
+select * from Adm;
 
 
 select * from Reservas;
+
+
+SELECT idAdm,senhaAdm FROM Adm WHERE loginUser = 'Admin';
