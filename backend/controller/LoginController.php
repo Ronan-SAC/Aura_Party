@@ -16,17 +16,20 @@ class LoginController{
 
     public function Client_Login_Validation($name,$password){
 
-        $sql_user = "SELECT * FROM Cliente WHERE loginUser = :name_user AND senha = :password_user";
+        $sql_user = "SELECT idUser,senha FROM Cliente WHERE loginUser = :name_user";
         $db_user = $this->conn->prepare($sql_user);
         $db_user->bindParam(":name_user",$name);
-        $db_user->bindParam(":password_user",$password);
         $db_user->execute();
-        $Clientes = $db_user->fetchAll(PDO::FETCH_ASSOC);
+        $Clientes = $db_user->fetch(PDO::FETCH_ASSOC);
 
         if($Clientes){
-            session_start();
-            $_SESSION["id_User"] = $Clientes[0]["idUser"];
-            return true;
+            if (password_verify($password, $Clientes['senha'])) {
+                session_start();
+                $_SESSION["id_User"] = $Clientes["idUser"];
+                return true;
+            } else {
+                return false; 
+            } 
         }
         else{
             return false;

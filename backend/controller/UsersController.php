@@ -141,10 +141,11 @@ public function getALLUser(){
 
 public function registerUser($name,$password,$telefone,$cpf,$email){
     try {
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
         $sql_User = "INSERT INTO Cliente (loginUser,senha,telefone,cpf,email) VALUES (:name, :password, :telefone, :cpf, :email )";
         $db_User = $this->conn->prepare($sql_User);
         $db_User->bindParam(":name",$name);
-        $db_User->bindParam(":password",$password);
+        $db_User->bindParam(":password",$passwordHash);
         $db_User->bindParam(":telefone",$telefone);
         $db_User->bindParam(":cpf",$cpf);
         $db_User->bindParam(":email",$email);
