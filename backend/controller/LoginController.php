@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ ."/../db/database.php";
+include __DIR__ ."/../db/Database.php";
 include __DIR__ . "./UsersController.php";
 
 class LoginController{
